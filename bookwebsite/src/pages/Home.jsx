@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-function MainPage (){
+function Home (){
     return (
         <>
-        <h1>Hello World</h1>
+        <h1>Hello Home Page !!!!</h1>
         </>
     )
 }
 
-export default MainPage;
+export default Home;
