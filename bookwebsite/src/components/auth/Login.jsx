@@ -15,7 +15,8 @@ const Login = () => {
       const res = await postLogin(username, password);
       console.log("API Response:", res);
       if (res.data.code === 0 && res.data.data.token) {
-        
+        localStorage.setItem('token', res.data.data.token);
+        localStorage.setItem('user', JSON.stringify(res.data.data.user));
         navigate("/");
       } else {
         alert("Invalid username or password");
@@ -38,7 +39,7 @@ const Login = () => {
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Nhập username của bạn"
+              placeholder="Enter username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -49,7 +50,7 @@ const Login = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Nhập mật khẩu"
+              placeholder="Enter password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
