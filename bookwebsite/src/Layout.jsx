@@ -1,17 +1,23 @@
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Login from "./components/auth/Login";
-import Home from "./pages/Home";
+import Home from "./components/book/Home";
+import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
 import Signup from "./components/auth/SignUp";
+import BookDetail from "./components/book/BookDetail";
+import MyCart from "./components/cart/MyCart";
 
 const Layout = ()=>{
     return(
         <>
             <Routes>
                 <Route path='/' element={<App/>}>
-                    <Route index element={<Home />} />
+                    <Route index element={<><Header /><Home /> <Footer /> </>} />
                     <Route path="login" element={<Login/>}/>
-                    <Route path="register" element={<Signup/>}/>
+                    <Route path="register" element={<Signup/>}/>  
+                    <Route path="book-detail/:bookId" element={<><Header /><BookDetail /><Footer /></>} /> 
+                    <Route path="my-cart" element={<><Header /><MyCart /><Footer /></>} />             
                 </Route>
             </Routes>
         </>

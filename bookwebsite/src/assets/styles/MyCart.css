@@ -1,0 +1,133 @@
+.cart-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 15px;
+  }
+  
+  .cart-title {
+    color: #2c3e50;
+    font-weight: 550;
+    /* text-align: center; */
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .cart-table {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: none;
+  }
+  
+  .cart-table th {
+    background: #3498db;
+    color: white;
+    font-weight: 500;
+    padding: 1rem;
+    border: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-align: center;
+
+  }
+  
+  .cart-table td {
+    padding: 1rem;
+    vertical-align: middle;
+    border: none;
+    color: #34495e;
+    font-size: 1rem;
+    text-align: center;
+
+  }
+  
+  .cart-table tr {
+    transition: background 0.3s ease;
+  }
+  
+  .cart-table tr:hover {
+    background: #f8f9fa;
+  }
+  
+  .book-title {
+    color: #e74c3c;
+    font-weight: 500;
+  }
+  
+  .price-text {
+    color: #27ae60;
+    font-weight: 600;
+  }
+  
+  .quantity-text {
+    color: #8e44ad;
+    font-weight: 500;
+  }
+  
+  .total-text {
+    color: #d35400;
+    font-weight: 600;
+  }
+  
+  .empty-cart-card {
+    background: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 1.2rem;
+  }
+  
+  .action-buttons .btn {
+    margin-right: 0.5rem;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  
+  .action-buttons .btn-danger {
+    background: #e74c3c;
+    border: none;
+  }
+  
+  .action-buttons .btn-danger:hover {
+    background: #c0392b;
+  }
+  
+  .action-buttons .btn-success {
+    background: #2ecc71;
+    border: none;
+  }
+  
+  .action-buttons .btn-success:hover {
+    background: #27ae60;
+  }
+  
+  .clear-cart-btn {
+    background: #e74c3c;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .clear-cart-btn:hover {
+    background: #c0392b;
+  }
+  
+  .alert-danger {
+    border-radius: 8px;
+    background: #fce4e4;
+    color: #e74c3c;
+    font-weight: 500;
+    margin-top: 1rem;
+  }
