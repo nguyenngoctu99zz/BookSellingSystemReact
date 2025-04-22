@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { getBookDetails } from "../../service/bookAPI";
 import { addToCart } from "../../service/cartAPI";
 import { isAuthenticated, getToken } from "../../utils/auth";
-
+import coverIcon from "../../assets/staticImage/cover-page.jpg";
 
 function BookDetail() {
-
     const { bookId } = useParams();
     const navigate = useNavigate();
     const [book, setBook] = useState(null);
@@ -15,7 +14,6 @@ function BookDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
- 
     useEffect(() => {
         const fetchBookDetails = async () => {
             try {
@@ -62,66 +60,74 @@ function BookDetail() {
         console.log(`Ordered ${quantity} copies of ${book?.bookTitle}`);
     };
 
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
-
+    if (loading) return <div className="text-center py-5">Loading...</div>;
+    if (error) return <div className="alert alert-danger m-3">{error}</div>;
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-3xl font-bold mb-4">{book?.bookTitle}</h1>
-            <div className="flex flex-col md:flex-row gap-6">
-                <div className="md:w-1/3">
-                    {book?.bookImage && book.bookImage.length > 0 ? (
+        <div className="container py-4 py-md-5 book-detail-container">
+            {/* <h1 className="mb-4 text-center text-md-start">{book?.bookTitle}</h1> */}
+            {/* <h1 className="mb-4 text-center text-md-start"  style={{ fontFamily: 'Sans serif'}}>Book details</h1> */}
+
+            
+            <div  className="row g-4">
+                <div className="col-12 col-md-4">
+                    {/* {book?.bookImage && book.bookImage.length > 0 ? (
                         <img
                             src={book.bookImage[0]}
-                            alt={book.bookTitle}
-                            className="w-full h-64 object-cover rounded"
+                            // alt={book.bookTitle}
+                            className="img-fluid rounded shadow book-image"
                         />
                     ) : (
-                        <div className="w-full h-64 bg-gray-200 rounded flex items-center justify-center">
+                        <div className="no-image rounded d-flex align-items-center justify-content-center shadow">
                             No Image Available
                         </div>
-                    )}
+                    )} */}
+
+                    <img className="img-fluid rounded shadow book-image" src={coverIcon} />
                 </div>
-                <div className="md:w-2/3">
-                    <p className="text-lg mb-2"><strong>Author:</strong> {book?.author}</p>
-                    <p className="text-lg mb-2"><strong>Publisher:</strong> {book?.publisher}</p>
-                    <p className="text-lg mb-2"><strong>Publish Date:</strong> {book?.publishDate}</p>
-                    <p className="text-lg mb-2"><strong>Price:</strong> ${book?.price}</p>
-                    <p className="text-lg mb-2"><strong>Available Quantity:</strong> {book?.quantity}</p>
-                    <p className="text-lg mb-4"><strong>Description:</strong> {book?.description}</p>
-
-                    <div className="flex items-center gap-4 mb-4">
-                        <label htmlFor="quantity" className="text-lg">Quantity:</label>
-                        <input
-                            type="number"
-                            id="quantity"
-                            value={quantity}
-                            onChange={handleQuantityChange}
-                            min="1"
-                            max={book?.quantity}
-                            className="w-16 p-1 border rounded"
-                        />
-                    </div>
-
-                    <div className="flex gap-4">
-                        <button
-                            onClick={handleAddToCart}
-                            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                        >
-                            Add to Cart
-                        </button>
-                        <button
-                            onClick={handleOrderNow}
-                            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                        >
-                            Order Now
-                        </button>
+                <div className="col-12 col-md-8">
+                    <div className="card h-100 border-0 shadow-sm p-3">
+                        <div className="card-body" >
+                            <p className="card-text"  style={{  fontFamily: 'Sans serif'}}><strong>Book's name:</strong> {book?.bookTitle}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif'}}><strong>Author:</strong> {book?.author}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif' }}><strong>Publisher:</strong> {book?.publisher}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif' }}><strong>Publish Date:</strong> {book?.publishDate}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif' }}><strong>Price:</strong> ${book?.price}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif' }}><strong>Quantity:</strong> {book?.quantity}</p>
+                            <p className="card-text" style={{  fontFamily: 'Sans serif' }}><strong>Description:</strong> {book?.description}</p>
+                            <div className="d-flex align-items-center gap-3 mb-4">
+                                <label htmlFor="quantity" className="form-label mb-0" style={{  fontFamily: 'Sans serif' }}>Quantity:</label>
+                                <input
+                                    type="number"
+                                    id="quantity"
+                                    value={quantity}
+                                    onChange={handleQuantityChange}
+                                    min="1"
+                                    max={book?.quantity}
+                                    className="form-control w-auto"
+                                />
+                            </div>
+                            <div className="d-flex gap-3 flex-wrap">
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="btn btn-primary btn-lg"
+                                >
+                                    Add to Cart
+                                </button>
+                                <button
+                                    onClick={handleOrderNow}
+                                    className="btn btn-success btn-lg"
+                                >
+                                    Order Now
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
 
 export default BookDetail;

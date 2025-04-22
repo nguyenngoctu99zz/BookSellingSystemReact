@@ -4,10 +4,12 @@ import "./assets/styles/Header.css";
 import "./assets/styles/Footer.css";
 import "./assets/styles/MyCart.css";
 import "./assets/styles/BookDetail.css";
+import "./assets/styles/MyRequestBook.css";
+import "./assets/styles/MyShop.css";
 
 function App() {
 
-  
+
   return (
     <>
       <Outlet />

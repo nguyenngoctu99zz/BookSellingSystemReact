@@ -1,0 +1,161 @@
+.request-container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.request-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: left;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: 'Sans serif';
+}
+
+.empty-request-card {
+  border: none;
+  border-radius: 12px;
+  background: #f8f9fa;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.empty-request-card:hover {
+  transform: translateY(-5px);
+}
+
+.empty-request-card h5 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.request-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.request-table th {
+  font-weight: 600;
+  color: #333;
+  background: #ffffff;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-align: center;
+  font-family: 'Sans serif';
+}
+
+.request-table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+  text-align: center;
+  font-family: 'Sans serif';
+}
+
+.book-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.price-text,
+.quantity-text {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* .card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+   */
+
+.card-body {
+  padding: 0;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .request-title {
+    font-size: 1.75rem;
+  }
+
+  .request-table th,
+  .request-table td {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  .book-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 576px) {
+  .request-container {
+    padding: 1rem;
+  }
+
+  .request-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .request-table thead {
+    display: none;
+  }
+
+  .request-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .request-table td {
+    display: block;
+    text-align: left;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .request-table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 40%;
+    color: #333;
+  }
+
+  .request-table td.book-image {
+    text-align: center;
+  }
+
+  /* .book-img {
+      width: 80px;
+      height: 80px;
+    } */
+}
