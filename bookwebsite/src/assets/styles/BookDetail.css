@@ -1,0 +1,174 @@
+.book-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.book-image {
+  max-height: 550px;
+  object-fit: cover;
+}
+
+.no-image {
+  height: 400px;
+  background-color: #f0f0f0;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* .card {
+    background: linear-gradient(250deg, #ffffff, #f8f9fa);
+} */
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Sans serif';
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Sans serif';
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.card-text {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #444;
+  margin-left: 5%;
+}
+.d-flex.align-items-center.gap-3 {
+  margin-left: 5%;
+}
+.d-flex.gap-3.flex-wrap {
+  justify-content: left;
+  margin-left: 5%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .book-image,
+  .no-image {
+    max-height: 300px;
+  }
+
+  .card-text {
+    font-size: 1rem;
+  }
+
+  .btn-lg {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .book-detail-container {
+    padding: 1rem 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .book-image,
+  .no-image {
+    max-height: 200px;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 0.5rem;
+    /* padding: 1rem; */
+  }
+
+  .card-body {
+    padding: 0;
+  }
+
+  .card-text {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem; /* Add a small gap between label and value */
+    margin-left: 20%;
+  }
+
+  .card-text strong {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  .card-text span {
+    text-align: left; /* Align the value to the left */
+  }
+
+  .d-flex.align-items-center.gap-3 {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    margin-left: 20%;
+  }
+
+  .form-label {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .form-control {
+    max-width: 80px; /* Slightly smaller for better fit */
+    font-size: 0.9rem;
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+  }
+
+  .d-flex.gap-3.flex-wrap {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .btn-primary,
+  .btn-success {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  /* .row.g-4 {
+      width: 90%;
+    } */
+}

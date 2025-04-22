@@ -1,0 +1,246 @@
+.shop-container {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.shop-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: left;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.empty-shop-card {
+  border: none;
+  border-radius: 12px;
+  background: #f8f9fa;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.empty-shop-card:hover {
+  transform: translateY(-5px);
+}
+
+.empty-shop-card h5 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.shop-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.shop-table th {
+  font-weight: 600;
+  color: #333;
+  /* background: #f1f3f5; */
+  background: #ffffff;
+  padding: 1rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  text-align: center;
+  font-family: "Sans serif";
+}
+
+.shop-table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #e9ecef;
+  text-align: center;
+  font-family: "Sans serif";
+}
+
+.table-responsive {
+  border-radius: 12px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.book-img {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.book-detail {
+  font-size: 1rem;
+  color: #333;
+}
+
+.status-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.status-active {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-inactive {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.action-buttonss {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.action-buttonss .btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.action-buttonss .btn-warning:hover {
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.action-buttonss .btn-danger:hover {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.action-buttonss .btn-success:hover {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.edit-form-container {
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+.form-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 0.75rem;
+  padding-left: 0.75rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .shop-title {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .shop-table th,
+  .shop-table td {
+    font-size: 0.85rem;
+    padding: 0.75rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+  }
+
+  .form-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .shop-container {
+    padding: 1rem;
+  }
+
+  .shop-table {
+    overflow-x: auto;
+    max-width: 80%;
+    margin: 0 auto; /* Căn giữa */
+  }
+
+  .shop-table thead {
+    display: none;
+  }
+
+  .shop-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .shop-table td {
+    display: block;
+    text-align: left;
+    border: none;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+  }
+
+  .shop-table td:before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 40%;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-left: 12.5%;
+  }
+
+  .shop-table td.book-image:before {
+    content: none;
+  }
+
+  .shop-table td.book-image {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .action-buttons .btn {
+    width: auto;
+  }
+}

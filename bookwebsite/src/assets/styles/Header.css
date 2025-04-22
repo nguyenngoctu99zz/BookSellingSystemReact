@@ -1,55 +1,206 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ffffff;
-    color: white;
-    padding: 10px 20px;
-    height: 120px;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  color: white;
+  padding: 10px 20px;
+  height: 120px;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  border-radius: 15px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  font-size: 24px;
+  width: 35%;
+  color: black;
+  display: flex;
+}
+
+.logo img {
+  height: 130px;
+  width: 270px;
+  padding-left: 10px;
+}
+
+.search-bar {
+  padding: 5px;
+  border-radius: 8px;
+  border: none;
+  width: 50%;
+  height: 50%;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-bar::placeholder {
+  text-indent: 5px;
+}
+
+.header-right {
+  width: 20%;
+  display: flex;
+  margin-left: 150px;
+}
+
+.header-right img {
+  width: 22.5%;
+  height: 22.5%;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.searchIcon {
+  height: 25px;
+  width: 25px;
+  margin-left: -50px;
+}
+/* 
+.user-dropdown-container img{
+  width: 43%;
+  height: 48%;
+  margin-bottom: 2%;
+  
+} */
+
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+  padding-left: 10%;
+  margin-top: 1%;
+}
+
+.user-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-dropdown a,
+.user-dropdown button {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.user-dropdown a:hover,
+.user-dropdown button:hover {
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+/* Tablet styles (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  header {
+    height: 100px;
+    padding: 10px 15px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .logo {
+    width: 30%;
+  }
+
+  .logo img {
+    height: 100px;
+    width: 200px;
+    padding-left: 5px;
+  }
+
+  .search-bar {
+    width: 40%;
+    height: 40%;
+    margin: 0 10px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
-  
-  .logo {
-    font-size: 24px;
-    width: 35%;
-    color: black;
-    display: flex;
-  }
-  .logo img {
-    height: 130px;
-    width: 270px;
-    padding-left: 10px;
-  }
-  .search-bar {
-    padding: 5px;
-    border-radius: 8px;
-    border: none;
-    width: 50%;
-    height: 50%;
-    background-color: #ffffff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  }
-  .search-bar::placeholder {
-    text-indent: 10px;
-  }
-  .header-right {
-    width: 20%;
-    display: flex;
-    margin-left: 150px;
-  }
-  .header-right img {
-    width: 22.5%;
-    height: 22.5%;;
-    margin: 20px;
-    cursor: pointer;
-  }
+
   .searchIcon {
-    height: 25px;
-    width: 25px;
-    margin-left: -50px;
+    height: 20px;
+    width: 20px;
+    margin-left: -40px;
   }
-  
+
+  .header-right {
+    width: 25%;
+    margin-left: 0;
+    justify-content: flex-end;
+  }
+
+  .header-right img {
+    width: 20%;
+    height: 20%;
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  header {
+    height: auto;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .logo {
+    width: auto;
+    justify-content: flex-start;
+    margin: 0;
+  }
+
+  .logo img {
+    height: 70px;
+    width: 100px;
+    padding-left: 0;
+  }
+
+  .search-bar {
+    width: 50%;
+    height: 35px;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: none;
+    position: relative;
+    border-color: black;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .searchIcon {
+    display: none;
+  }
+
+  .header-right {
+    width: auto;
+    margin-left: 0;
+    justify-content: flex-end; /* Align icons to the right */
+  }
+
+  .header-right img {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+  }
+
+  /* .user-dropdown-container {
+    padding-left: 10%;
+    margin-top: none;
+    margin-bottom: 5%;
+  } */
+}

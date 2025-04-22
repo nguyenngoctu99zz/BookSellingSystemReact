@@ -1,80 +1,84 @@
 .footer-container {
-    /* background-color: #2d2d2d; */
-    background-color: #b4bf97;
-    color: white;
-    height: 320px;
-    padding: 20px 40px;
-    font-family: Arial, sans-serif;
+  /* background-color: #2d2d2d; */
+  background-color: #b4bf97;
+  color: white;
+  height: 320px;
+  padding: 20px 40px;
+  font-family: Arial, sans-serif;
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .footer-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .logo-placeholder {
-    /* background-color: white; */
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  /* background-color: white; */
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .social-icons {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .social-icon {
-    background-color: #444;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
+  background-color: #444;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
 
 .footer-info {
-    display: flex;
-    gap: 50px;
+  display: flex;
+  gap: 50px;
 }
 
-.contact-info, .address-info {
-    flex: 1;
+.contact-info,
+.address-info {
+  flex: 1;
 }
 
-.contact-info h3, .address-info h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+.contact-info h3,
+.address-info h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
 .underline {
-    width: 50px;
-    height: 2px;
-    background-color: #00aaff;
-    margin-bottom: 15px;
+  width: 50px;
+  height: 2px;
+  background-color: #00aaff;
+  margin-bottom: 15px;
 }
 
-.contact-info p, .address-info p {
-    margin: 5px 0;
-    font-size: 14px;
-    line-height: 1.5;
+.contact-info p,
+.address-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.contact-info p strong, .address-info p strong {
-    font-weight: bold;
+.contact-info p strong,
+.address-info p strong {
+  font-weight: bold;
 }
