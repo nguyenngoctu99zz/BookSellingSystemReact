@@ -57,13 +57,13 @@ header {
   width: 25px;
   margin-left: -50px;
 }
-/* 
+
 .user-dropdown-container img{
   width: 43%;
   height: 48%;
   margin-bottom: 2%;
   
-} */
+}
 
 .user-dropdown-container {
   position: relative;
@@ -197,10 +197,4 @@ header {
     height: 25px;
     margin: 0 5px;
   }
-
-  /* .user-dropdown-container {
-    padding-left: 10%;
-    margin-top: none;
-    margin-bottom: 5%;
-  } */
 }

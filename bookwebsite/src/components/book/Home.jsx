@@ -3,7 +3,6 @@ import { getBooks } from "../../service/bookAPI";
 
 function Home() {
     const [books, setBooks] = useState([]);
-  
     useEffect(() => {
       getBooks()
         .then((response) => {

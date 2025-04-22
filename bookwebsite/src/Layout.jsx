@@ -24,7 +24,6 @@ const Layout = ()=>{
                     <Route path="seller/request-book" element={<><Header /><AddNewBook /></>} />   
                     <Route path="seller/my-request" element={<><Header /><MyRequestBook /></>} /> 
                     <Route path="seller/my-shop" element={<><Header /><MyShop /></>} />             
-            
                 </Route>
             </Routes>
         </>
