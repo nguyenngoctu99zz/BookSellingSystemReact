@@ -1,0 +1,60 @@
+.error-box {
+    width: 100%;
+    max-width: 350px;
+    height: 400px;
+    background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .error-face {
+    width: 100px;
+    height: 100px;
+    background: #FCFCFC;
+    border-radius: 50%;
+    border: 2px solid #777777;
+  }
+  
+  .error-eye {
+    width: 10px;
+    height: 10px;
+    background: #777777;
+    border-radius: 50%;
+    top: 40%;
+  }
+  
+  .start-25 {
+    left: 25%;
+  }
+  
+  .end-25 {
+    right: 25%;
+  }
+  
+  .error-mouth {
+    width: 30px;
+    height: 15px;
+    border: 2px solid;
+    border-color: #777777 transparent transparent #777777;
+    border-radius: 0 0 30px 30px;
+    top: 55%;
+    transform: rotate(45deg);
+  }
+  
+  .error-face {
+    animation: bounce 1s ease-in infinite;
+  }
+  
+  @keyframes bounce {
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .btn-light:hover {
+    background-color: #F2F2F2 !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }

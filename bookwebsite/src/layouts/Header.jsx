@@ -93,16 +93,41 @@ import { useNavigate, Link } from "react-router-dom";
 //   );
 // }
 
+// function Header() {
+//     return (
+//       <header>
+//         <div className="logo">
+//           <img src={logo} alt="Logo" />
+//         </div>
+
+//         <input type="text" className="search-bar" placeholder="Search here..." />
+//         <img className="searchIcon" src={searchIcon} alt="Search Icon" />
+
+//         <div className="header-right">
+//           <img className="navi2" src={userIcon} alt="User Icon" />
+//           <img className="navi2" src={cartIcon} alt="Cart Icon" />
+//         </div>
+//       </header>
+//     );
+//   }
+// export default Header;
+
 function Header() {
+    let [keyword,setKeyword] = useState("");
+    const navigate = useNavigate();
     return (
       <header>
         <div className="logo">
           <img src={logo} alt="Logo" />
         </div>
-
-        <input type="text" className="search-bar" placeholder="Search here..." />
-        <img className="searchIcon" src={searchIcon} alt="Search Icon" />
-
+  
+        <input type="text" className="search-bar" placeholder="Search here..." onChange={(e)=>{
+        setKeyword(e.target.value)
+    }}/>
+        <img className="searchIcon" src={searchIcon} alt="Search Icon" onClick={()=>{
+            navigate(`/search?keyword=${keyword}`);
+        }} />
+  
         <div className="header-right">
           <img className="navi2" src={userIcon} alt="User Icon" />
           <img className="navi2" src={cartIcon} alt="Cart Icon" />

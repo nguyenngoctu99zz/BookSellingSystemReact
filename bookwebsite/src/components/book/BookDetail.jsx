@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { getBookDetails } from "../../service/bookAPI";
 import { addToCart } from "../../service/cartAPI";
 import { isAuthenticated, getToken } from "../../utils/auth";
+import Popup from "../Popup";
+import PaymentForm from "../Payment/PaymentFormComponent";
 import coverIcon from "../../assets/staticImage/cover-page.jpg";
 
 function BookDetail() {
@@ -13,6 +15,7 @@ function BookDetail() {
     const [quantity, setQuantity] = useState(1);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showPaymentPopup, setShowPaymentPopup] = useState(false);
 
     useEffect(() => {
         const fetchBookDetails = async () => {
@@ -57,9 +60,11 @@ function BookDetail() {
             navigate('/login', { state: { from: `/book-detail/${bookId}` } });
             return;
         }
-        console.log(`Ordered ${quantity} copies of ${book?.bookTitle}`);
+        setShowPaymentPopup(true);
     };
-
+    const closePaymentPopup = () => {
+        setShowPaymentPopup(false);
+    };
     if (loading) return <div className="text-center py-5">Loading...</div>;
     if (error) return <div className="alert alert-danger m-3">{error}</div>;
 
@@ -125,6 +130,18 @@ function BookDetail() {
                     </div>
                 </div>
             </div>
+            <Popup isOpen={showPaymentPopup} onClose={closePaymentPopup}>
+                <PaymentForm 
+                    onSuccess={closePaymentPopup} // Close popup on successful payment
+                    onCancel={closePaymentPopup} // Close popup when canceled
+                    bookDetails={{ 
+                        id:parseInt(book?.bookId), 
+                        title: book?.bookTitle, 
+                        price: book?.price, 
+                        quantity 
+                    }}
+                />
+            </Popup>
         </div>
     );
 }
