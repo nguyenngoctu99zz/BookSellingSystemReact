@@ -26,11 +26,15 @@ const Layout = ()=>{
                     <Route path="my-cart" element={<><Header /><MyCart /></>} />
                     <Route path="seller/request-book" element={<><Header /><AddNewBook /></>} />   
                     <Route path="seller/my-request" element={<><Header /><MyRequestBook /></>} /> 
+
                     <Route path="seller/my-shop" element={<><Header /><MyShop /></>} />          
                     <Route path="search" element={<SearchResult/>}/>   
                     <Route path="list" element={<ListingPage/>}/>
                     <Route path="book-detail/success" element={<><Header /><PaymentSuccess/></>}/>
                     <Route path="book-detail/fail" element={<><Header /><PaymentFail/></>}/>
+
+                               
+
                 </Route>
             </Routes>
         </>
