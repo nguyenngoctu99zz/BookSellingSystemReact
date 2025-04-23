@@ -7,14 +7,16 @@ import userIcon from "../assets/staticImage/userIcon.png";
 import cartIcon from "../assets/staticImage/cart-icon.png";
 import { postLogout } from "../service/securityAPI";
 import { getToken, getRoleFromToken, isAuthenticated } from "../utils/auth";
+import "../assets/styles/Header.css"
+
 
 function Header() {
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    let [keyword,setKeyword] = useState("");
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const loggedIn = isAuthenticated();
-
   useEffect(() => {
     const role = getRoleFromToken();
     setUserRole(role);
@@ -165,17 +167,21 @@ function Header() {
         );
     }
   };
-
-  return (
-    <header>
-      <div className="logo">
-        <img src={logo} alt="Logo" />
-      </div>
-
-      <input type="text" className="search-bar" placeholder="Search here..." />
-      <img className="searchIcon" src={searchIcon} alt="Search Icon" />
-
-      <div className="header-right">
+ 
+    return (
+      <header>
+        <div className="logo">
+          <img src={logo} alt="Logo" />
+        </div>
+  
+        <input type="text" className="search-bar" placeholder="Search here..." onChange={(e)=>{
+        setKeyword(e.target.value)
+    }}/>
+        <img className="searchIcon" src={searchIcon} alt="Search Icon" onClick={()=>{
+            navigate(`/search?keyword=${keyword}`);
+        }} />
+  
+  <div className="header-right">
         <div className="user-dropdown-container" ref={dropdownRef}>
           <img
             className="navi2"
@@ -197,8 +203,7 @@ function Header() {
           onClick={() => navigate("/my-cart")}
         />
       </div>
-    </header>
-  );
-}
-
+      </header>
+    );
+  }
 export default Header;

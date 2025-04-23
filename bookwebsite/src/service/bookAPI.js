@@ -73,3 +73,25 @@ export const changeBookStatus = (token, bookId, isActive) => {
         }
     );
 };
+
+export const bookByReview =(pageNumber,numberOfBookEachPage)=>{
+    return axios.get(`http://localhost:8080/api/v1/book/best-review?pageNumber=${pageNumber}&numberOfBookEachPage=${numberOfBookEachPage}`,{
+      }).catch((err)=>{
+        console.log(err);
+    })
+    
+    }
+    
+    export const bookByDiscount =(pageNumber,numberOfBookEachPage)=>{
+        return axios.get(`http://localhost:8080/api/v1/book/best-discount?pageNumber=${pageNumber}&numberOfBookEachPage=${numberOfBookEachPage}`,{
+          }).catch((err)=>{
+            console.log(err);
+        })
+    }
+    
+    export const newestBooks = (pageNumber,numberOfBookEachPage)=>{
+        return axios.get(`http://localhost:8080/api/v1/book/new-book?pageNumber=${pageNumber}&numberOfBookEachPage=${numberOfBookEachPage}`,{
+        }).catch((err)=>{
+          console.log(err);
+      })
+    }
