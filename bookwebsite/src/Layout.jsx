@@ -103,9 +103,9 @@ const Layout = () => {
               </>
             }
           />
-          <Route path="search" element={<SearchResult />} />
+          <Route path="search" element={<><SearchResult /><Footer /></>} />
 
-          <Route path="list" element={<ListingPage />} />
+          <Route path="list" element={<><ListingPage /><Footer /></>} />
           <Route
             path="book-detail/success"
             element={
@@ -122,6 +122,7 @@ const Layout = () => {
               <>
                 <Header />
                 <PaymentFail />
+                <Footer/>
               </>
             }
           />
