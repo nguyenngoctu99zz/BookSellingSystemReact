@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaUser, FaBox, FaHeart, FaSignOutAlt, FaTachometerAlt, FaStore } from "react-icons/fa";
+import {
+  FaUser,
+  FaBox,
+  FaHeart,
+  FaSignOutAlt,
+  FaTachometerAlt,
+  FaStore,
+} from "react-icons/fa";
 import logo from "../assets/staticImage/logo-web1.png";
 import searchIcon from "../assets/staticImage/search.png";
 import userIcon from "../assets/staticImage/userIcon.png";
 import cartIcon from "../assets/staticImage/cart-icon.png";
 import { postLogout } from "../service/securityAPI";
 import { getToken, getRoleFromToken, isAuthenticated } from "../utils/auth";
-import "../assets/styles/Header.css"
-
+import "../assets/styles/Header.css";
 
 function Header() {
-    let [keyword,setKeyword] = useState("");
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  let [keyword, setKeyword] = useState("");
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -107,21 +113,50 @@ function Header() {
       case "ROLE_SELLER":
         return (
           <>
-            <a
+            {/* <a
               className="dropdown-item d-flex align-items-center"
               onClick={() => navigate("/dashboard")}
             >
               <FaStore className="me-2" />
               Seller Dashboard
-            </a>
+            </a> */}
             <a
               className="dropdown-item d-flex align-items-center"
-              onClick={() => navigate("/profile")}
+              onClick={() => navigate("/")}
             >
               <FaUser className="me-2" />
               Home
             </a>
-          
+
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/seller/manage-order")}
+            >
+              <FaBox className="me-2" />
+              Manage Orders
+            </a>
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/seller/request-book")}
+            >
+              <FaStore className="me-2" />
+              Add New Book
+            </a>
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/seller/my-request")}
+            >
+              <FaHeart className="me-2" />
+              My Request Book
+            </a>
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/seller/my-shop")}
+            >
+              <FaStore className="me-2" />
+              My Shop
+            </a>
+
             <button
               className="dropdown-item d-flex align-items-center"
               onClick={handleLogout}
@@ -144,7 +179,14 @@ function Header() {
             </a>
             <a
               className="dropdown-item d-flex align-items-center"
-              onClick={() => navigate("/orders")}
+              onClick={() => navigate("/")}
+            >
+              <FaUser className="me-2" />
+              Home
+            </a>
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/my-order")}
             >
               <FaBox className="me-2" />
               Orders
@@ -167,21 +209,31 @@ function Header() {
         );
     }
   };
- 
-    return (
-      <header>
-        <div className="logo">
-          <img src={logo} alt="Logo" />
-        </div>
-  
-        <input type="text" className="search-bar" placeholder="Search here..." onChange={(e)=>{
-        setKeyword(e.target.value)
-    }}/>
-        <img className="searchIcon" src={searchIcon} alt="Search Icon" onClick={()=>{
-            navigate(`/search?keyword=${keyword}`);
-        }} />
-  
-  <div className="header-right">
+
+  return (
+    <header>
+      <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div>
+
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Search here..."
+        onChange={(e) => {
+          setKeyword(e.target.value);
+        }}
+      />
+      <img
+        className="searchIcon"
+        src={searchIcon}
+        alt="Search Icon"
+        onClick={() => {
+          navigate(`/search?keyword=${keyword}`);
+        }}
+      />
+
+      <div className="header-right">
         <div className="user-dropdown-container" ref={dropdownRef}>
           <img
             className="navi2"
@@ -203,7 +255,7 @@ function Header() {
           onClick={() => navigate("/my-cart")}
         />
       </div>
-      </header>
-    );
-  }
+    </header>
+  );
+}
 export default Header;

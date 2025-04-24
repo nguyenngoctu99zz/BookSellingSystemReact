@@ -1,10 +1,10 @@
-.cart-container {
+.manage-order-container {
   padding: 2rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.cart-title {
+.manage-order-title {
   font-size: 2.25rem;
   font-weight: 700;
   color: #1a1a1a;
@@ -12,9 +12,10 @@
   margin-bottom: 2rem;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-family: "Sans serif";
 }
 
-.empty-cart-card {
+.empty-order-card {
   border: none;
   border-radius: 12px;
   background: #f8f9fa;
@@ -23,25 +24,24 @@
   transition: transform 0.3s ease;
 }
 
-.empty-cart-card:hover {
+.empty-order-card:hover {
   transform: translateY(-5px);
 }
 
-.empty-cart-card h5 {
+.empty-order-card h5 {
   font-size: 1.5rem;
   color: #333;
 }
 
-.cart-table {
+.manage-order-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
 
-.cart-table th {
+.manage-order-table th {
   font-weight: 600;
   color: #333;
-  /* background: #f1f3f5; */
   background: #ffffff;
   padding: 1rem;
   text-transform: uppercase;
@@ -50,7 +50,7 @@
   font-family: "Sans serif";
 }
 
-.cart-table td {
+.manage-order-table td {
   padding: 1rem;
   vertical-align: middle;
   border-bottom: 1px solid #e9ecef;
@@ -72,8 +72,8 @@
   color: #1a1a1a;
 }
 
-.price-text,
 .quantity-text,
+.order-date,
 .total-text {
   font-size: 1rem;
   color: #333;
@@ -86,11 +86,6 @@
   transition: all 0.3s ease;
 }
 
-.action-buttons .btn-outline-danger:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
 .action-buttons .btn-success {
   background-color: #28a745;
   border-color: #28a745;
@@ -101,24 +96,17 @@
   border-color: #1e7e34;
 }
 
-.clear-cart-btn {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.clear-cart-btn:hover {
-  background-color: #c82333;
-  border-color: #bd2130;
+.action-buttons .btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
 .card {
   border: none;
   border-radius: 12px;
-  /* overflow: hidden; */
   box-shadow: 2px 0 5px rgba(0.5, 0, 0, 0.2);
 }
+
 .card-body {
   padding: 0;
 }
@@ -128,22 +116,17 @@
   padding: 1rem;
   font-size: 1rem;
 }
-
-/* .align-middle1 {
-  margin-top: 8%;
-  height: 75px;
-} */
-.td.book-title3 {
-  margin-top: 8%;
-  height: 76px;
+.d-flex.gap-2 {
+  justify-content: center;
 }
+
 @media (max-width: 768px) {
-  .cart-title {
+  .manage-order-title {
     font-size: 1.75rem;
   }
 
-  .cart-table th,
-  .cart-table td {
+  .manage-order-table th,
+  .manage-order-table td {
     font-size: 0.85rem;
     padding: 0.75rem;
   }
@@ -157,35 +140,31 @@
     padding: 0.4rem 0.8rem;
     font-size: 0.8rem;
   }
-
-  .clear-cart-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
-  }
 }
+
 @media (max-width: 576px) {
-  .cart-container {
+  .manage-order-container {
     padding: 1rem 0.5rem;
   }
 
-  .cart-title {
+  .manage-order-title {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     text-align: center;
   }
 
-  .cart-table {
+  .manage-order-table {
     overflow-x: auto;
     padding: 0 0.5rem;
     max-width: 85%;
     margin: 0 auto;
   }
 
-  .cart-table thead {
+  .manage-order-table thead {
     display: none;
   }
 
-  .cart-table tr {
+  .manage-order-table tr {
     display: block;
     margin-bottom: 1.25rem;
     border: 1px solid #e9ecef;
@@ -196,7 +175,7 @@
     width: 100%;
   }
 
-  .cart-table td {
+  .manage-order-table td {
     display: flex;
     align-items: center;
     text-align: left;
@@ -205,8 +184,7 @@
     font-size: 0.85rem;
   }
 
-  /* Adjust the label (data-label) display */
-  .cart-table td:before {
+  .manage-order-table td:before {
     content: attr(data-label);
     font-weight: 600;
     width: 40%;
@@ -216,11 +194,11 @@
     padding-right: 0.3rem;
   }
 
-  .cart-table td.book-image:before {
+  .manage-order-table td.book-image:before {
     content: none;
   }
 
-  .cart-table td.book-image {
+  .manage-order-table td.book-image {
     display: block;
     text-align: center;
     padding: 0.5rem 0;
@@ -233,30 +211,29 @@
     margin: 0 auto;
   }
 
-  .cart-table td.action-buttons:before {
+  .manage-order-table td.action-buttons:before {
     content: none;
   }
 
-  .cart-table td.action-buttons {
+  .manage-order-table td.action-buttons {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
     padding: 0.5rem 0;
   }
 
-  /* Adjust alignment and spacing for book info */
-  .cart-table td:not(.book-image):not(.action-buttons) {
+  .manage-order-table td:not(.book-image):not(.action-buttons) {
     justify-content: flex-start;
     padding-left: 3.5rem;
     padding-right: 0.5rem;
   }
 
-  .cart-table td:not(.book-image):not(.action-buttons):before {
-    width: 40%; /* Reduced width for better balance */
+  .manage-order-table td:not(.book-image):not(.action-buttons):before {
+    width: 40%;
     text-align: left;
   }
 
-  .cart-table td:not(.book-image):not(.action-buttons) > * {
+  .manage-order-table td:not(.book-image):not(.action-buttons) > * {
     flex: 1;
     text-align: left;
   }
@@ -267,59 +244,20 @@
     border-radius: 6px;
   }
 
-  .action-buttons .btn-outline-danger {
-    border-width: 1px;
-  }
-
-  .action-buttons .btn-success {
-    padding: 0.35rem 0.9rem;
-  }
-
-  .clear-cart-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
-    width: 100%;
-    max-width: 200px;
-    margin: 1rem auto;
-    display: block;
-  }
-
-  .d-flex.justify-content-between {
-    flex-direction: column;
-    gap: 0.75rem;
-    align-items: center;
-    margin-top: 1.5rem;
-  }
-
-  .btn-outline-secondary {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
-    width: 100%;
-    max-width: 200px;
-  }
-
-  .empty-cart-card {
+  .empty-order-card {
     padding: 1.5rem;
     border-radius: 10px;
     margin: 0 0.5rem;
   }
 
-  .empty-cart-card h5 {
+  .empty-order-card h5 {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
   }
 
-  .empty-cart-card p {
+  .empty-order-card p {
     font-size: 0.9rem;
     margin-bottom: 1rem;
-  }
-
-  .empty-cart-card .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    border-radius: 6px;
   }
 
   .alert {
@@ -330,9 +268,5 @@
 
   .table-responsive {
     box-shadow: none;
-  }
-
-  .card {
-    padding: none;
   }
 }

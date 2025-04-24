@@ -1,6 +1,6 @@
 .card {
   border-radius: 10px;
-  transition: transform 0.2s;
+  box-shadow: 2px 0 5px rgba(0.5, 0, 0, 0.2);
 }
 
 .card:hover {
@@ -39,5 +39,9 @@
 
   .btn-custom {
     font-size: 1rem;
+  }
+
+  .mb-4 {
+    text-align: center;
   }
 }
