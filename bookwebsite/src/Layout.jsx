@@ -14,6 +14,8 @@ import { SearchResult } from "./pages/SearchResultPage";
 import { ListingPage } from "./pages/Listing";
 import PaymentSuccess from "./components/Payment/PaymentSuccess";
 import PaymentFail from "./components/Payment/PaymentFail";
+import ManageUser from "./components/admin/user/ManageUser";
+import ManageBook from "./components/admin/book/ManageBook";
 const Layout = ()=>{
     return(
         <>
@@ -33,8 +35,8 @@ const Layout = ()=>{
                     <Route path="book-detail/success" element={<><Header /><PaymentSuccess/></>}/>
                     <Route path="book-detail/fail" element={<><Header /><PaymentFail/></>}/>
 
-                               
-
+                    <Route path="admin/manage-user" element={<ManageUser/>}/>
+                    <Route path="admin/manage-book" element={<ManageBook/>}/>
                 </Route>
             </Routes>
         </>

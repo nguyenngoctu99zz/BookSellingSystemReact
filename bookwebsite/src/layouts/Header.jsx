@@ -83,7 +83,7 @@ function Header() {
           <>
             <a
               className="dropdown-item d-flex align-items-center"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/admin/manage-user")}
             >
               <FaTachometerAlt className="me-2" />
               Admin Dashboard

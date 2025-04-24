@@ -103,7 +103,7 @@ const MyCart = () => {
           <div className="card-body text-center">
             <h5>Your cart is empty</h5>
             <p className="text-muted">Start adding books to your cart!</p>
-            <a href="/books" className="btn btn-primary">Shop Now</a>
+            <a href="/" className="btn btn-primary">Shop Now</a>
           </div>
         </div>
       ) : (
