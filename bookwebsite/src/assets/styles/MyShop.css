@@ -133,6 +133,7 @@
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 1rem;
+  margin-left: 30%;
 }
 
 .form-row {
@@ -154,6 +155,14 @@
   gap: 0.75rem;
   margin-top: 1.5rem;
   justify-content: flex-end;
+}
+
+.action-buttonss .btn {
+  width: 50%;
+}
+td.book-title {
+  margin-top: 12.5%;
+  height: 76px;
 }
 
 @media (max-width: 768px) {
@@ -180,6 +189,10 @@
   .form-col {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+
+  .edit-form-container {
+    margin-left: 0px;
   }
 }
 

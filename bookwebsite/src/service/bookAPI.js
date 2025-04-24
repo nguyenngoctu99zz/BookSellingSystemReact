@@ -102,15 +102,3 @@ export const newestBooks = (pageNumber, numberOfBookEachPage) => {
       console.log(err);
     });
 };
-
-export const deleteBook = async (bookId, token) => {
-  const response = await axios.delete(
-    `http://localhost:8080/api/v1/admin/books/delete/${bookId}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  return response.data;
-};

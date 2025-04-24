@@ -47,6 +47,7 @@ export const showPendingOrder = (token) => {
 export const acceptOrder = (token, orderId) => {
     return axios.put(
         `http://localhost:8080/api/v1/manage-order/${orderId}/approve`,
+        null, 
         {
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -58,6 +59,7 @@ export const acceptOrder = (token, orderId) => {
 export const rejectOrder = (token, orderId) => {
     return axios.put(
         `http://localhost:8080/api/v1/manage-order/${orderId}/reject`,
+        null, 
         {
             headers: {
                 'Authorization': `Bearer ${token}`
