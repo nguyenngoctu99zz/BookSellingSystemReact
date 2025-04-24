@@ -6,6 +6,9 @@ import "./assets/styles/MyCart.css";
 import "./assets/styles/BookDetail.css";
 import "./assets/styles/MyRequestBook.css";
 import "./assets/styles/MyShop.css";
+import "./assets/styles/MyOrder.css";
+import "./assets/styles/ManageOrder.css";
+
 
 function App() {
 

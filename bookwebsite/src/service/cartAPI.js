@@ -44,3 +44,15 @@ export const clearCartItem = (token) => {
         }
     );
 };
+
+export const editCartItem = (cartId, token, quantity) => {
+    return axios.put(
+        `http://localhost:8080/api/v1/cart/update-quantity/${cartId}?quantity=${quantity}`,
+        null, 
+        {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    );
+};

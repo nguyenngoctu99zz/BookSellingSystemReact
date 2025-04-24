@@ -10,35 +10,125 @@ import MyCart from "./components/cart/MyCart";
 import AddNewBook from "./components/book/AddNewBook";
 import MyRequestBook from "./components/book/MyRequestBook";
 import MyShop from "./components/book/MyShop";
+import MyOrder from "./components/order/MyOrder";
+import ManageOrder from "./components/order/ManageOrder";
 import { SearchResult } from "./pages/SearchResultPage";
 import { ListingPage } from "./pages/Listing";
 import PaymentSuccess from "./components/Payment/PaymentSuccess";
 import PaymentFail from "./components/Payment/PaymentFail";
-const Layout = ()=>{
-    return(
-        <>
-            <Routes>
-                <Route path='/' element={<App/>}>
-                    <Route index element={<><Header /><Home /> </>} />
-                    <Route path="login" element={<Login/>}/>
-                    <Route path="register" element={<Signup/>}/>  
-                    <Route path="book-detail/:bookId" element={<><Header /><BookDetail /></>} /> 
-                    <Route path="my-cart" element={<><Header /><MyCart /></>} />
-                    <Route path="seller/request-book" element={<><Header /><AddNewBook /></>} />   
-                    <Route path="seller/my-request" element={<><Header /><MyRequestBook /></>} /> 
 
-                    <Route path="seller/my-shop" element={<><Header /><MyShop /></>} />          
-                    <Route path="search" element={<SearchResult/>}/>   
-                    <Route path="list" element={<ListingPage/>}/>
-                    <Route path="book-detail/success" element={<><Header /><PaymentSuccess/></>}/>
-                    <Route path="book-detail/fail" element={<><Header /><PaymentFail/></>}/>
+const Layout = () => {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route
+            index
+            element={
+              <>
+                <Header />
+                <Home /> <Footer />
+              </>
+            }
+          />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Signup />} />
+          <Route
+            path="book-detail/:bookId"
+            element={
+              <>
+                <Header />
+                <BookDetail />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="my-cart"
+            element={
+              <>
+                <Header />
+                <MyCart />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="seller/request-book"
+            element={
+              <>
+                <Header />
+                <AddNewBook />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="seller/my-request"
+            element={
+              <>
+                <Header />
+                <MyRequestBook />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="my-order"
+            element={
+              <>
+                <Header />
+                <MyOrder />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/seller/manage-order"
+            element={
+              <>
+                <Header />
+                <ManageOrder />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="seller/my-shop"
+            element={
+              <>
+                <Header />
+                <MyShop />
+                <Footer />
+              </>
+            }
+          />
+          <Route path="search" element={<SearchResult />} />
 
-                               
-
-                </Route>
-            </Routes>
-        </>
-    )
-}
+          <Route path="list" element={<ListingPage />} />
+          <Route
+            path="book-detail/success"
+            element={
+              <>
+                <Header />
+                <PaymentSuccess />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="book-detail/fail"
+            element={
+              <>
+                <Header />
+                <PaymentFail />
+              </>
+            }
+          />
+        </Route>
+      </Routes>
+    </>
+  );
+};
 
 export default Layout;
