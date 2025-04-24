@@ -8,6 +8,8 @@ import {
   editCartItem,
 } from "../../service/cartAPI";
 import { useNavigate } from "react-router-dom";
+import Popup from "../Popup";
+import PaymentForm from "../Payment/PaymentFormComponent";
 
 const MyCart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -15,8 +17,10 @@ const MyCart = () => {
   const [error, setError] = useState(null);
   const [editingId, setEditingId] = useState(null);
   const [editQuantity, setEditQuantity] = useState(1);
+  const [showPaymentPopup, setShowPaymentPopup] = useState(false);
+  const [selectedBook, setSelectedBook] = useState(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -72,10 +76,18 @@ const MyCart = () => {
     }
   };
 
-  const handleCheckoutItem = (cartItemId) => {
-    navigate(`/checkout/${cartItemId}`);
+  const handleCheckoutItem = (item) => {
+    setSelectedBook({
+      id: item.bookId,
+      title: item.bookTitle,
+      price: item.bookPrice,
+      quantity: item.quantity
+    });
+    setShowPaymentPopup(true);
   };
-
+  const handlePaymentCancel = () => {
+    setShowPaymentPopup(false);
+  };
   const startEditing = (item) => {
     setEditingId(item.cartItemId);
     setEditQuantity(item.quantity);
@@ -276,14 +288,12 @@ const MyCart = () => {
                                 Remove
                               </Button>
                               <Button
-                                variant="success"
-                                size="sm"
-                                onClick={() =>
-                                  handleCheckoutItem(item.cartItemId)
-                                }
-                              >
-                                Checkout
-                              </Button>
+    variant="success"
+    size="sm"
+    onClick={() => handleCheckoutItem(item)}
+  >
+    Checkout
+  </Button>
                             </>
                           )}
                         </td>
@@ -308,6 +318,14 @@ const MyCart = () => {
           </div>
         </>
       )}
+      {showPaymentPopup && selectedBook && (
+    <Popup isOpen={showPaymentPopup} onClose={handlePaymentCancel}>
+      <PaymentForm 
+        onCancel={handlePaymentCancel}
+        bookDetails={selectedBook}
+      />
+    </Popup>
+  )}
     </div>
   );
 };

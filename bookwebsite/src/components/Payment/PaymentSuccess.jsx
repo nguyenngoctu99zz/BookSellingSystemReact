@@ -1,10 +1,8 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../assets/styles/PaymentSuccess.css';
-import { useNavigate } from 'react-router-dom';
 
 function PaymentSuccess() {
-  const navigate = useNavigate()
   return (
     <div className="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
       <div className="success-box bg-success text-center p-4 rounded-4 shadow-lg position-relative">
@@ -17,10 +15,7 @@ function PaymentSuccess() {
           <h1 className="fw-bold mb-3">PAYMENT SUCCESSFUL!</h1>
           <p className="mb-0">THANK YOU FOR YOUR PURCHASE</p>
         </div>
-        <button 
-          className="btn btn-light fw-bold px-4 py-2 rounded-pill text-success shadow-sm"
-          onClick={()=> navigate('/')}
-        >
+        <button className="btn btn-light fw-bold px-4 py-2 rounded-pill text-success shadow-sm">
           CONTINUE
         </button>
       </div>
