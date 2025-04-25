@@ -8,7 +8,7 @@ import { FiGrid, FiUsers, FiBook, FiShoppingCart, FiEdit, FiTrash2, FiMenu } fro
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getToken } from '../../../utils/auth';
 import { deleteBook, getBooks } from '../../../service/bookAPI';
-
+import { searchBook } from '../../../service/searchBook';
 const ManageBook = () => {
   const [books, setBooks] = useState([]);
   const [searchTitle, setSearchTitle] = useState('');
@@ -39,7 +39,33 @@ const ManageBook = () => {
       setLoading(false);
     }
   };
+  const handleSearch = async () => {
+    if (!searchTitle.trim()) {
+      fetchBooks(); 
+      return;
+    }
 
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await searchBook(searchTitle);
+      const data = response?.data?.books || [];
+      const bookList = Array.isArray(data) ? data : [];
+      setBooks(bookList);
+      setCurrentPage(1); 
+    } catch (err) {
+      setError(err.message || 'Failed to search books. Please try again.');
+      setBooks([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleReset = () => {
+    setSearchTitle('');
+    setSearchAuthor('');
+    fetchBooks();
+  };
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -246,12 +272,12 @@ const ManageBook = () => {
                       />
                     </Col>
                     <Col md={2} className="d-flex justify-content-md-end">
-                      <Button variant="secondary" className="me-2">
-                        Reset
-                      </Button>
-                      <Button variant="primary">
-                        Query
-                      </Button>
+                    <Button variant="secondary" className="me-2" onClick={handleReset}>
+    Reset
+  </Button>
+  <Button variant="primary" onClick={handleSearch}>
+    Query
+  </Button>
                     </Col>
                   </Row>
                 </Form>
