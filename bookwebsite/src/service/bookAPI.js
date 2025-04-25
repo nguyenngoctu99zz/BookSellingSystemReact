@@ -8,31 +8,49 @@ export const getBookDetails = (bookId) => {
   return axios.get(`http://localhost:8080/api/v1/book/${bookId}`);
 };
 
-export const requestToAddNewBook = (bookData, token) => {
-  return axios.post(
-    "http://localhost:8080/api/v1/add-book",
-    {
-      bookTitle: bookData.bookTitle,
-      publisher: bookData.publisher,
-      author: bookData.author,
-      quantity: bookData.quantity,
-      price: bookData.price,
-      bookImage: [],
-      description: bookData.description,
-      publishDate: bookData.publishDate,
+// export const requestToAddNewBook = (bookData, token) => {
+//     return axios.post(
+//         "http://localhost:8080/api/v1/add-book",
+//         {
+//             bookTitle: bookData.bookTitle,
+//             publisher: bookData.publisher,
+//             author: bookData.author,
+//             quantity: bookData.quantity,
+//             price: bookData.price,
+//             bookImage: [],
+//             description: bookData.description,
+//             publishDate: bookData.publishDate
+//         },
+//         {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         }
+//     );
+// };
+
+export const requestToAddNewBook = (formData, token) => {
+  return axios.post("http://localhost:8080/api/v1/add-book", formData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "multipart/form-data",
     },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  });
 };
 
 export const myRequestAddNewBook = (token) => {
   return axios.get("http://localhost:8080/api/v1/add-book/my-requests", {
     headers: {
       Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export const cancelRequestAddNewBook = (token, bookId) => {
+  return axios.delete(`http://localhost:8080/api/v1/add-book/${bookId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   });
 };
@@ -62,6 +80,17 @@ export const changeBookStatus = (token, bookId, isActive) => {
   return axios.patch(
     `http://localhost:8080/api/v1/manage-book/${bookId}/status?isActive=${isActive}`,
     {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+};
+
+export const deleteBook = (bookId, token) => {
+  return axios.delete(
+    `http://localhost:8080/api/v1/admin/books/delete/${bookId}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -101,4 +130,50 @@ export const newestBooks = (pageNumber, numberOfBookEachPage) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+const BASE_URL = "http://localhost:8080/api/v1/admin/books";
+
+export const getAllPendingBooks = async (token) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/pending`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(
+      error.response?.data?.message || "Failed to fetch pending books"
+    );
+  }
+};
+
+export const approveBook = async (token, bookId) => {
+  try {
+    const response = await axios.put(
+      `${BASE_URL}/${bookId}/approve`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to approve book");
+  }
+};
+export const rejectBook = async (token, bookId) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/${bookId}/reject`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to reject book");
+  }
 };

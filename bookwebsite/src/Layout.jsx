@@ -16,6 +16,9 @@ import { SearchResult } from "./pages/SearchResultPage";
 import { ListingPage } from "./pages/Listing";
 import PaymentSuccess from "./components/Payment/PaymentSuccess";
 import PaymentFail from "./components/Payment/PaymentFail";
+import ManageBook from "./components/admin/book/ManageBook";
+import ManageUser from "./components/admin/user/ManageUser";
+import ApproveBook from "./components/admin/book/ApproveBook";
 
 const Layout = () => {
   return (
@@ -70,6 +73,30 @@ const Layout = () => {
                 <Header />
                 <MyRequestBook />
                 <Footer />
+              </>
+            }
+          />
+          <Route
+            path="admin/manage-book"
+            element={
+              <>
+                <ManageBook />
+              </>
+            }
+          />
+          <Route
+            path="admin/manage-user"
+            element={
+              <>
+                <ManageUser />
+              </>
+            }
+          />
+          <Route
+            path="admin/approve-book"
+            element={
+              <>
+                <ApproveBook />
               </>
             }
           />

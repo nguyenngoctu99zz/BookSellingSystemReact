@@ -250,7 +250,8 @@ const ManageUser = () => {
               { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
               { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
               { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
-              { name: 'Manage Orders', path: '/admin/manage-orders', icon: <FiShoppingCart /> }
+              { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
+
             ].map((item, index) => (
               <div
                 key={index}
@@ -280,6 +281,7 @@ const ManageUser = () => {
                 { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
                 { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
                 { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
+                { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
               ].map((item, index) => (
                 <div
                   key={index}

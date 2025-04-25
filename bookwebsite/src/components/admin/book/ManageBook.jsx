@@ -155,7 +155,7 @@ const ManageBook = () => {
               { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
               { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
               { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
-              { name: 'Manage Orders', path: '/admin/manage-orders', icon: <FiShoppingCart /> }
+             { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
             ].map((item, index) => (
               <div
                 key={index}
@@ -185,6 +185,7 @@ const ManageBook = () => {
                 { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
                 { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
                 { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
+                { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
               ].map((item, index) => (
                 <div
                   key={index}
@@ -289,13 +290,6 @@ const ManageBook = () => {
                               <td>${book.price}</td>
                               <td>{book.sellerId}</td>
                               <td className="text-center">
-                                <Button
-                                  variant="link"
-                                  className="text-warning p-0 me-2 action-btn"
-                                  onClick={() => handleEditBook(book)}
-                                >
-                                  <FiEdit />
-                                </Button>
                                 <Button
                                   variant="link"
                                   className="text-danger p-0 action-btn"
