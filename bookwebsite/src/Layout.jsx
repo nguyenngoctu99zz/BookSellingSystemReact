@@ -20,6 +20,7 @@ import ManageBook from "./components/admin/book/ManageBook";
 import ManageUser from "./components/admin/user/ManageUser";
 import ApproveBook from "./components/admin/book/ApproveBook";
 import BookReview from "./components/review/BookReview";
+import UserProfile from "./components/prodile/UserProfile";
 
 const Layout = () => {
   return (
@@ -37,6 +38,7 @@ const Layout = () => {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
+          <Route path="profile" element={<><Header /><UserProfile /></>} />
           <Route
             path="book-detail/:bookId"
             element={

@@ -15,6 +15,18 @@ const getAllUsers = async (token) => {
     throw new Error(error.response?.data?.message || "Failed to fetch users");
   }
 };
+const getUserById = async (userId, token) => {
+  try {
+    const response = await axios.get(`${API_URL}/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || "Failed to fetch user");
+  }
+};
 
 const deleteUser = async (userId, token) => {
   try {
@@ -62,4 +74,4 @@ const updateUser = async (userId, formData, token) => {
   }
 };
 
-export { getAllUsers, deleteUser, toggleUserStatus, updateUser };
+export { getUserById, getAllUsers, deleteUser, toggleUserStatus, updateUser };

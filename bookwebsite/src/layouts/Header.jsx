@@ -59,12 +59,12 @@ function Header() {
       const res = await postLogout(token);
       if (res.data.code === 0) {
         localStorage.removeItem("token");
-        setUserRole(null); // Reset role
+        setUserRole(null); 
         navigate("/login");
       }
     } catch (error) {
       console.error("Logout failed:", error);
-      localStorage.removeItem("token"); // Xóa token nếu lỗi
+      localStorage.removeItem("token");
       setUserRole(null);
       navigate("/login");
     }
@@ -191,13 +191,6 @@ function Header() {
               <FaBox className="me-2" />
               Orders
             </a>
-            <a
-              className="dropdown-item d-flex align-items-center"
-              onClick={() => navigate("/wishlist")}
-            >
-              <FaHeart className="me-2" />
-              Wishlist
-            </a>
             <button
               className="dropdown-item d-flex align-items-center"
               onClick={handleLogout}
@@ -213,7 +206,12 @@ function Header() {
   return (
     <header>
       <div className="logo">
-        <img src={logo} alt="Logo" />
+        <img src={logo} 
+          alt="Logo" 
+          onClick={() => {
+            navigate('/');
+          }}/>
+        
       </div>
 
       <input
