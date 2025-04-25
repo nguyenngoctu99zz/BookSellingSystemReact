@@ -43,7 +43,7 @@ const Layout = () => {
               <>
                 <Header />
                 <BookDetail />
-                <BookReview/>
+                <BookReview />
                 <Footer />
               </>
             }

@@ -191,13 +191,13 @@ function Header() {
               <FaBox className="me-2" />
               Orders
             </a>
-            <a
+            {/* <a
               className="dropdown-item d-flex align-items-center"
               onClick={() => navigate("/wishlist")}
             >
               <FaHeart className="me-2" />
               Wishlist
-            </a>
+            </a> */}
             <button
               className="dropdown-item d-flex align-items-center"
               onClick={handleLogout}
