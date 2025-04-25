@@ -19,6 +19,7 @@ import PaymentFail from "./components/Payment/PaymentFail";
 import ManageBook from "./components/admin/book/ManageBook";
 import ManageUser from "./components/admin/user/ManageUser";
 import ApproveBook from "./components/admin/book/ApproveBook";
+import BookReview from "./components/review/BookReview";
 
 const Layout = () => {
   return (
@@ -42,6 +43,7 @@ const Layout = () => {
               <>
                 <Header />
                 <BookDetail />
+                <BookReview/>
                 <Footer />
               </>
             }

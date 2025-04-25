@@ -16,6 +16,7 @@ const Login = () => {
       console.log("API Response:", res);
       if (res.data.code === 0 && res.data.data.token) {
         localStorage.setItem('token', res.data.data.token);
+        localStorage.setItem('userId', res.data.data.userId);
         navigate("/");
       } else {
         alert("Invalid username or password");

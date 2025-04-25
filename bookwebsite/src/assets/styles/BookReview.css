@@ -1,0 +1,22 @@
+.book-review-card {
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  
+  .star {
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .star:hover {
+    transform: scale(1.1);
+  }
+  
+  .btn-primary {
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #005f99;
+  }
