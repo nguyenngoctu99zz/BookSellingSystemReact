@@ -20,6 +20,7 @@ import ManageBook from "./components/admin/book/ManageBook";
 import ManageUser from "./components/admin/user/ManageUser";
 import ApproveBook from "./components/admin/book/ApproveBook";
 import BookReview from "./components/review/BookReview";
+// import Home from "./components/book/Home";
 
 const Layout = () => {
   return (

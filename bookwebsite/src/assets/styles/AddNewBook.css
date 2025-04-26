@@ -32,6 +32,16 @@
   color: #333;
 }
 
+.mb-4 {
+  margin-left: 20%;
+}
+
+/* @media (max-width: 768px) {
+  .button.btn.btn-primary.w-100.btn-custom {
+    margin-left: 20%;
+  }
+} */
+
 @media (max-width: 576px) {
   .card-body {
     padding: 1.5rem;
@@ -56,5 +66,9 @@
     align-items: center;
     justify-content: center;
     margin-left: 20%;
+  } */
+
+  /* .button.btn.btn-primary.w-100.btn-custom {
+    margin-right: 20%;
   } */
 }
