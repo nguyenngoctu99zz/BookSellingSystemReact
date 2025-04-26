@@ -15,7 +15,7 @@ const PaymentForm = ({ onSuccess, onCancel, bookDetails }) => {
       {
         paymentMethod: paymentMethod,
         orderInfo: `user:${getUserIdFromToken()},product:${bookDetails.id},quantity:${bookDetails.quantity}`,
-        amount: 100000
+        amount: parseInt(bookDetails.price * bookDetails.quantity)
         // bookDetails.price * bookDetails.quantity
       },
       {
@@ -23,6 +23,8 @@ const PaymentForm = ({ onSuccess, onCancel, bookDetails }) => {
           'Content-Type': 'application/json',
           "Authorization":`Bearer ${getToken()}`
         }
+      }).catch((err)=>{
+        alert("you can't not buy your own product");
       });
 
       console.log(response.data);
