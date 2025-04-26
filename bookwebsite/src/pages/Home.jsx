@@ -7,9 +7,9 @@ import Footer from "../layouts/Footer";
 function Home() {
   return (
     <>
-      <BestDiscount />
+      {/* <BestDiscount />
       <BestReview />
-      <NewestBook />
+      <NewestBook /> */}
     </>
   );
 }

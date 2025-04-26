@@ -25,18 +25,33 @@ const Signup = () => {
   const handleSignup = async (event) => {
     event.preventDefault();
 
+    if (!formData.fullName || !formData.username || !formData.email ||
+        !formData.phoneNumber || !formData.password || !formData.confirmPassword) {
+      alert("Please fill all required fields");
+      return;
+    }
+  
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-
+  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert("Invalid email format");
+      return;
+    }
+  
+    const phoneRegex = /^[0-9]{9,11}$/;
+    if (!phoneRegex.test(formData.phoneNumber)) {
+      alert("Phone number must have 9-11 digits");
+      return;
+    }
+  
     try {
-      const { confirmPassword, ...payload } = formData; 
-      console.log("data", formData);
-      
+      const { confirmPassword, ...payload } = formData;
       const res = await postRegister(payload);
-      console.log("Signup Response:", res);
-
+  
       if (res.data) {
         alert("Registration successful. Please login.");
         navigate("/login");
@@ -45,9 +60,15 @@ const Signup = () => {
       }
     } catch (error) {
       console.error("Signup error:", error);
-      alert("An error occurred. Please try again.");
+      if (error.response && error.response.data) {
+        alert(error.response.data.message); 
+      } else {
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
+    
   };
+  
 
   return (
     <Container

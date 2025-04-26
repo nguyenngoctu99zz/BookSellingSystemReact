@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Login from "./components/auth/Login";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Signup from "./components/auth/SignUp";
@@ -20,7 +20,9 @@ import ManageBook from "./components/admin/book/ManageBook";
 import ManageUser from "./components/admin/user/ManageUser";
 import ApproveBook from "./components/admin/book/ApproveBook";
 import BookReview from "./components/review/BookReview";
-import UserProfile from "./components/prodile/UserProfile";
+import UserProfile from "./components/profile/UserProfile";
+import Dashboard from "./components/admin/dashboard/DashBoard";
+import Home from "./components/book/Home";
 
 const Layout = () => {
   return (
@@ -101,6 +103,14 @@ const Layout = () => {
             element={
               <>
                 <ApproveBook />
+              </>
+            }
+          />
+          <Route
+            path="admin/dashboard"
+            element={
+              <>
+                <Dashboard />
               </>
             }
           />
