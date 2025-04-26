@@ -8,27 +8,6 @@ export const getBookDetails = (bookId) => {
   return axios.get(`http://localhost:8080/api/v1/book/${bookId}`);
 };
 
-// export const requestToAddNewBook = (bookData, token) => {
-//     return axios.post(
-//         "http://localhost:8080/api/v1/add-book",
-//         {
-//             bookTitle: bookData.bookTitle,
-//             publisher: bookData.publisher,
-//             author: bookData.author,
-//             quantity: bookData.quantity,
-//             price: bookData.price,
-//             bookImage: [],
-//             description: bookData.description,
-//             publishDate: bookData.publishDate
-//         },
-//         {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }
-//         }
-//     );
-// };
-
 export const requestToAddNewBook = (formData, token) => {
   return axios.post("http://localhost:8080/api/v1/add-book", formData, {
     headers: {
@@ -63,14 +42,14 @@ export const showMyShop = (token) => {
   });
 };
 
-export const editMyBookShop = (token, bookId, bookData) => {
+export const editMyBookShop = (token, bookId, formData) => {
   return axios.put(
     `http://localhost:8080/api/v1/manage-book/${bookId}`,
-    bookData,
+    formData,
     {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     }
   );

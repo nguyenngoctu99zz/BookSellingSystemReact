@@ -44,4 +44,17 @@
   .mb-4 {
     text-align: center;
   }
+
+  /* ??? */
+  /* .btn-primary,
+  .btn-success {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 200px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20%;
+  } */
 }

@@ -212,9 +212,22 @@ function Header() {
 
   return (
     <header>
-      <div className="logo">
+      {/* <div className="logo">
+        <img src={logo} alt="Logo" />
+      </div> */}
+
+      <div className="logo" onClick={() => navigate("/")}>
         <img src={logo} alt="Logo" />
       </div>
+
+      {/* <input
+        type="text"
+        className="search-bar"
+        placeholder="Search here..."
+        onChange={(e) => {
+          setKeyword(e.target.value);
+        }}
+      /> */}
 
       <input
         type="text"
@@ -223,7 +236,13 @@ function Header() {
         onChange={(e) => {
           setKeyword(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            navigate(`/search?keyword=${keyword}`);
+          }
+        }}
       />
+
       <img
         className="searchIcon"
         src={searchIcon}
