@@ -1,0 +1,32 @@
+.explore-section {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 16px;
+    margin: 3rem 1rem;
+  }
+  
+  .explore-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #343a40;
+  }
+  
+  .explore-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+  }
+  
+  .btn-explore {
+    padding: 0.75rem 2rem;
+    font-size: 0.8rem;
+    border-radius: 50px;
+    background: linear-gradient(to right, #3498db, #2980b9);
+    border: none;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-explore:hover {
+    background: linear-gradient(135deg, #6610f2, #0d6efd);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(13, 110, 253, 0.3);
+  }
+  

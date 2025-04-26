@@ -4,14 +4,15 @@ import { BestDiscount } from "../components/homePageCom/BestDiscount";
 import { BestReview } from "../components/homePageCom/BestReviewBook";
 import { NewestBook } from "../components/homePageCom/NewestBook";
 import Footer from "../layouts/Footer";
-function Home() {
+import ExploreKnowledgeButton from "../components/homePageCom/Explore";
+function Home1() {
   return (
-    <>
-      {/* <BestDiscount />
+    <> <ExploreKnowledgeButton/>
+      <BestDiscount />
       <BestReview />
-      <NewestBook /> */}
+      <NewestBook /> 
     </>
   );
 }
 
-export default Home;
+export default Home1;

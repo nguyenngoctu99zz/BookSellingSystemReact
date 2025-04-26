@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import App from "./App";
 import Login from "./components/auth/Login";
-// import Home from "./pages/Home";
+import Home1 from "./pages/Home";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import Signup from "./components/auth/SignUp";
@@ -29,8 +29,18 @@ const Layout = () => {
     <>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route
+        <Route
             index
+            element={
+              <>
+                <Header/>
+                <Home1 /> 
+                <Footer/>
+              </>
+            }
+          />
+          <Route
+            path="explore"
             element={
               <>
                 <Header />
@@ -144,9 +154,9 @@ const Layout = () => {
               </>
             }
           />
-          <Route path="search" element={<SearchResult />} />
+          <Route path="search" element={<><SearchResult /><Footer /></>} />
 
-          <Route path="list" element={<ListingPage />} />
+          <Route path="list" element={<><ListingPage /><Footer /></>} />
           <Route
             path="book-detail/success"
             element={
@@ -163,6 +173,7 @@ const Layout = () => {
               <>
                 <Header />
                 <PaymentFail />
+                <Footer></Footer>
               </>
             }
           />

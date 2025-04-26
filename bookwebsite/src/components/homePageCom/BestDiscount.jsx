@@ -1,37 +1,4 @@
-// import React, { useEffect, useState } from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import '../../assets/styles/BestSelling.css';
-// import { bookByDiscount } from '../../service/bookAPI';
-// export const BestDiscount = () => {
-//   let [products,setProducts] = useState([])
-//   useEffect(()=>{
-//     bookByDiscount(1,5).then((res)=>{
-//       setProducts(res.data.bookList);
-//     })
-//   },[])
 
-//   return (
-//     <div className="container product-list">
-//       <h2 className="text-center mb-4">Best Discount</h2>
-      
-//       <div className="row row001">
-//         {products.map((product, index) => (
-//           <div key={index} className="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-//             <div className="card h-100 product-card">
-//               <div className="card-body text-center d-flex flex-column">
-//                 <img src={`http://localhost:8080/api/v1/image/show?imageName=${product.bookImage}`} alt="" />
-//                 <h5 className="card-title">{product.bookTitle}</h5>
-//                 <h5 className='price'>
-//                   {product.price}
-//                 </h5>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
 
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
