@@ -32,6 +32,17 @@
   color: #333;
 }
 
+.mb-4 {
+  margin-left: 20%;
+}
+
+.form-select[multiple] {
+  min-height: 120px;
+}
+.form-select[multiple] option {
+  padding: 8px 12px;
+}
+
 @media (max-width: 576px) {
   .card-body {
     padding: 1.5rem;
@@ -43,5 +54,19 @@
 
   .mb-4 {
     text-align: center;
+  }
+
+  /* ??? */
+  .btn-primary1 {
+    /* padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 200px;
+    align-items: center;
+    justify-content: center; */
+    background-color: #0056b3;
+    transform: scale(1.05);
+    margin-left: 20%;
   }
 }

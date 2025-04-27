@@ -50,14 +50,22 @@ const Layout = () => {
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Signup />} />
-          <Route path="profile" element={<><Header /><UserProfile /></>} />
+          <Route
+            path="profile"
+            element={
+              <>
+                <Header />
+                <UserProfile />
+              </>
+            }
+          />
           <Route
             path="book-detail/:bookId"
             element={
               <>
                 <Header />
                 <BookDetail />
-                <BookReview/>
+                <BookReview />
                 <Footer />
               </>
             }

@@ -42,14 +42,14 @@ export const showMyShop = (token) => {
   });
 };
 
-export const editMyBookShop = (token, bookId, bookData) => {
+export const editMyBookShop = (token, bookId, formData) => {
   return axios.put(
     `http://localhost:8080/api/v1/manage-book/${bookId}`,
-    bookData,
+    formData,
     {
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
       },
     }
   );

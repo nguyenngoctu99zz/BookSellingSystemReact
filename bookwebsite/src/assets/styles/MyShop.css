@@ -133,7 +133,8 @@
   padding: 1.5rem;
   border-radius: 8px;
   margin-top: 1rem;
-  margin-left: 30%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .form-row {
@@ -154,7 +155,7 @@
   display: flex;
   gap: 0.75rem;
   margin-top: 1.5rem;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .action-buttonss .btn {
@@ -193,6 +194,7 @@ td.book-title {
 
   .edit-form-container {
     margin-left: 0px;
+    margin-right: 0px;
   }
 }
 

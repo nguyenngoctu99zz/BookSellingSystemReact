@@ -2,7 +2,8 @@
   background-color: #6ac3f3;
   color: #ffffff;
   padding: 3rem 0;
-  font-family: "Arial", sans-serif;
+  font-family: "Sans serif";
+  bottom: 0;
 }
 
 .footer-logo img {
@@ -54,6 +55,9 @@
 }
 
 @media (max-width: 767.98px) {
+  /* .footer-container {
+    width: 103%;
+  } */
   .footer-logo {
     margin-bottom: 2rem;
   }

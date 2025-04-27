@@ -247,8 +247,8 @@ const MyCart = () => {
                           ).toFixed(2)}
                         </td>
                         <td
-                          className="action-buttons align-middle"
-                          data-label="Actions"
+                          className="action-buttons1 align-middle"
+                          // data-label="Actions"
                           style={{ color: "#555555" }}
                         >
                           {editingId === item.cartItemId ? (

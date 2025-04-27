@@ -120,6 +120,10 @@
   justify-content: center;
 }
 
+tr {
+  background-color: white;
+}
+
 @media (max-width: 768px) {
   .manage-order-title {
     font-size: 1.75rem;

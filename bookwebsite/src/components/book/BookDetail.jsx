@@ -90,7 +90,14 @@ function BookDetail() {
           />
         </div>
         <div className="col-12 col-md-8">
-          <div className="card h-100 border-0 shadow-sm p-3">
+          <div
+            className="card h-100 border-0 shadow-sm p-3"
+            // style={{
+            //   boxShadow: "2px 0 5px rgba(0.5, 0, 0, 0.2)",
+            //   borderColor: "black",
+            //   backgroundColor: "red",
+            // }}
+          >
             <div className="card-body">
               <p className="card-text" style={{ fontFamily: "Sans serif" }}>
                 <strong>Book's name:</strong> {book?.bookTitle}
