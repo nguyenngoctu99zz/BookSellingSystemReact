@@ -439,12 +439,28 @@ function Header() {
               <FaStore className="me-2" />
               Seller Dashboard
             </a> */}
-            <a
+            {/* <a
               className="dropdown-item d-flex align-items-center"
               onClick={() => navigate("/")}
             >
               <FaUser className="me-2" />
               Home
+            </a> */}
+
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/profile")}
+            >
+              <FaUser className="me-2" />
+              Profile
+            </a>
+
+            <a
+              className="dropdown-item d-flex align-items-center"
+              onClick={() => navigate("/my-order")}
+            >
+              <FaBox className="me-2" />
+              Orders
             </a>
 
             <a
@@ -533,6 +549,15 @@ function Header() {
           }}
         />
       </div>
+      {/* 
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Search here..."
+        onChange={(e) => {
+          setKeyword(e.target.value);
+        }}
+      /> */}
 
       <input
         type="text"
@@ -541,7 +566,13 @@ function Header() {
         onChange={(e) => {
           setKeyword(e.target.value);
         }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            navigate(`/search?keyword=${keyword}`);
+          }
+        }}
       />
+
       <img
         className="searchIcon"
         src={searchIcon}

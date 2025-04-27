@@ -12,7 +12,7 @@ const Signup = () => {
     fullName: "",
     phoneNumber: "",
     email: "",
-    userRole: "SELLER", 
+    userRole: "SELLER",
   });
 
   const navigate = useNavigate();
@@ -25,33 +25,39 @@ const Signup = () => {
   const handleSignup = async (event) => {
     event.preventDefault();
 
-    if (!formData.fullName || !formData.username || !formData.email ||
-        !formData.phoneNumber || !formData.password || !formData.confirmPassword) {
+    if (
+      !formData.fullName ||
+      !formData.username ||
+      !formData.email ||
+      !formData.phoneNumber ||
+      !formData.password ||
+      !formData.confirmPassword
+    ) {
       alert("Please fill all required fields");
       return;
     }
-  
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-  
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       alert("Invalid email format");
       return;
     }
-  
+
     const phoneRegex = /^[0-9]{9,11}$/;
     if (!phoneRegex.test(formData.phoneNumber)) {
       alert("Phone number must have 9-11 digits");
       return;
     }
-  
+
     try {
       const { confirmPassword, ...payload } = formData;
       const res = await postRegister(payload);
-  
+
       if (res.data) {
         alert("Registration successful. Please login.");
         navigate("/login");
@@ -61,14 +67,12 @@ const Signup = () => {
     } catch (error) {
       console.error("Signup error:", error);
       if (error.response && error.response.data) {
-        alert(error.response.data.message); 
+        alert(error.response.data.message);
       } else {
         alert("An unexpected error occurred. Please try again.");
       }
     }
-    
   };
-  
 
   return (
     <Container
@@ -162,7 +166,12 @@ const Signup = () => {
             </Form.Select>
           </Form.Group>
 
-          <Button variant="success" type="submit" className="w-100">
+          <Button
+            variant="success1"
+            type="submit"
+            className="w-100"
+            style={{ backgroundColor: "#007bff", color: "white" }}
+          >
             Sign Up
           </Button>
         </Form>
