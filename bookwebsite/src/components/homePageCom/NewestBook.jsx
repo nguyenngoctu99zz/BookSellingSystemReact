@@ -1,36 +1,3 @@
-// import React, { useState,useEffect } from 'react';
-// import { Container, Row, Col, Card } from 'react-bootstrap';
-// import '../../assets/styles/NewestBook.css';
-// import { newestBooks } from '../../service/bookAPI';
-// export const NewestBook = () => {
-//  let [books, setBooks] = useState([]);
-//   useEffect(()=>{
-//      newestBooks(1,8).then((res)=>{
-//        setBooks(res.data.bookList);
-//      })
-//    },[])
-
-//   return (
-//     <Container className="book-references mt-4">
-//       <h2 className="text-center mb-4">Newest Books</h2>
-//       <Row xs={2} sm={2} md={3} lg={4} className="g-4 rown2">
-//         {books.map((book, index) => (
-//           <Col key={index}>
-//             <Card className="h-100 card001">
-//               <Card.Body className="text-center">
-//                 <img src={`http://localhost:8080/api/v1/image/show?imageName=${book.bookImage}`} alt="" />
-//                 <Card.Title className="book-title">{book.bookTitle}</Card.Title>
-//                 <h5 className='price'>
-//                   {book.price}
-//                 </h5>
-//               </Card.Body>
-//             </Card>
-//           </Col>
-//         ))}
-//       </Row>
-//     </Container>
-//   );
-// };
 
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
