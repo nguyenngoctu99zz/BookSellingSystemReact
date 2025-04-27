@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getToken } from "../utils/auth";
 
 export const getBooks = () => {
   return axios.get("http://localhost:8080/api/v1/book");
@@ -68,8 +69,8 @@ export const changeBookStatus = (token, bookId, isActive) => {
 };
 
 export const deleteBook = (bookId, token) => {
-  return axios.delete(
-    `http://localhost:8080/api/v1/admin/books/delete/${bookId}`,
+  return axios.patch(
+    `http://localhost:8080/api/v1/admin/books/${bookId}/status?isActive=false`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -168,4 +169,16 @@ export const rejectBook = async (token, bookId) => {
   } catch (error) {
     throw new Error(error.response?.data?.message || "Failed to reject book");
   }
+};
+export const updateBookStatus = async (bookId, isActive) => {
+  const token = getToken();
+  return await axios.patch(
+    `${BASE_URL}/${bookId}/status?isActive=${isActive}`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 };

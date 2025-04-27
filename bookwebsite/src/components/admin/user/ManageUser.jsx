@@ -6,7 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { FiGrid, FiUsers, FiBook, FiShoppingCart, FiMenu, FiCheckCircle } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getToken } from '../../../utils/auth';
-import { getAllUsers, deleteUser, toggleUserStatus, updateUser } from '../../../service/userApi';
+import { getAllUsers, toggleUserStatus, updateUser } from '../../../service/userAPI';
+
 
 const ManageUser = () => {
   const [users, setUsers] = useState([]);
@@ -60,16 +61,6 @@ const ManageUser = () => {
     }
   }, [location.pathname]);
 
-  const handleDeleteUser = async (userId) => {
-    if (!window.confirm('Are you sure you want to delete this user?')) return;
-    try {
-      await deleteUser(userId, token);
-      fetchUsers();
-    } catch (err) {
-      setError(err.message || 'Failed to delete user. Please try again.');
-      console.error(err);
-    }
-  };
 
   const handleToggleUserStatus = async (userId, isActive) => {
     if (!window.confirm(`Are you sure you want to ${isActive ? 'disable' : 'enable'} this user?`)) return;
@@ -159,7 +150,6 @@ const ManageUser = () => {
     }
   };
 
-  // Filter users only by role, ignore searchTerm
   const filteredUsers = Array.isArray(users)
     ? users.filter(user => {
         const matchesFilter = filter.role ? user.userRole === filter.role : true;
@@ -407,13 +397,6 @@ const ManageUser = () => {
                                   {togglingUsers.has(user.userId) ? (
                                     <Spinner animation="border" size="sm" />
                                   ) : user.active ? 'Disable' : 'Enable'}
-                                </Button>
-                                <Button
-                                  variant="link"
-                                  className="text-danger p-0 action-btn"
-                                  onClick={() => handleDeleteUser(user.userId)}
-                                >
-                                  Delete
                                 </Button>
                               </td>
                             </tr>

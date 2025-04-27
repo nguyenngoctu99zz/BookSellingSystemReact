@@ -27,7 +27,7 @@ import {
 } from "react-icons/fi";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getToken } from "../../../utils/auth";
-import { deleteBook, getBooks } from "../../../service/bookAPI";
+import { changeBookStatus, deleteBook, getBooks, updateBookStatus } from "../../../service/bookAPI";
 import { searchBook } from "../../../service/searchBook";
 const ManageBook = () => {
   const [books, setBooks] = useState([]);
@@ -112,19 +112,6 @@ const ManageBook = () => {
     setShowSidebar(false);
   };
 
-  const handleDeleteBook = async (bookId) => {
-    if (!window.confirm("Are you sure you want to delete this book?")) return;
-
-    try {
-      await deleteBook(bookId, token);
-      await fetchBooks();
-      alert("Book deleted successfully");
-    } catch (err) {
-      setError(err.message || "Failed to delete book. Please try again.");
-      console.error("Delete book error:", err);
-    }
-  };
-
   const handleDropdownSelect = (action) => {
     if (action === "home") {
       navigate("/");
@@ -133,6 +120,20 @@ const ManageBook = () => {
       navigate("/login");
     }
   };
+  const handleChangeStatus = async (bookId, isActive) => {
+    if (!window.confirm(`Are you sure you want to ${isActive ? "enable" : "disable"} this book?`)) return;
+  
+    try {
+      await updateBookStatus(bookId, isActive);
+      await fetchBooks();
+      alert(`Book ${isActive ? "enabled" : "disabled"} successfully`);
+    } catch (err) {
+      setError(err.message || "Failed to change book status. Please try again.");
+      console.error("Change status error:", err);
+    }
+  };
+  
+  
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#f1f5f9" }}>
@@ -391,38 +392,41 @@ const ManageBook = () => {
                           <th>Author</th>
                           <th>Price</th>
                           <th>Seller</th>
+                          <th>Status</th>
                           <th className="text-center">Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {currentBooks.length > 0 ? (
-                          currentBooks.map((book) => (
-                            <tr key={book.bookId}>
-                              <td>{book.bookId}</td>
-                              <td>{book.bookTitle}</td>
-                              <td>{book.description}</td>
-                              <td>{book.author}</td>
-                              <td>${book.price}</td>
-                              <td>{book.sellerId}</td>
-                              <td className="text-center">
-                                <Button
-                                  variant="link"
-                                  className="text-danger p-0 action-btn"
-                                  onClick={() => handleDeleteBook(book.bookId)}
-                                >
-                                  <FiTrash2 />
-                                </Button>
-                              </td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan="7" className="text-center text-muted">
-                              No books found.
-                            </td>
-                          </tr>
-                        )}
-                      </tbody>
+  {currentBooks.length > 0 ? (
+    currentBooks.map((book) => (
+      <tr key={book.bookId}>
+        <td>{book.bookId}</td>
+        <td>{book.bookTitle}</td>
+        <td>{book.description}</td>
+        <td>{book.author}</td>
+        <td>${book.price}</td>
+        <td>{book.sellerId}</td>
+        <td>{book.active ? "Active" : "Inactive"}</td> {/* status book */}
+        <td className="text-center d-flex justify-content-center gap-2">
+          <Button
+            variant={book.active ? "warning" : "success"}
+            size="sm"
+            onClick={() => handleChangeStatus(book.bookId, !book.active)}
+          >
+            {book.active ? "Disable" : "Enable"}
+          </Button>
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan="8" className="text-center text-muted">
+        No books found.
+      </td>
+    </tr>
+  )}
+</tbody>
+
                     </Table>
                   )}
                 </div>
