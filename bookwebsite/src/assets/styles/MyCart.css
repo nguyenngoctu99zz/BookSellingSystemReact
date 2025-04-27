@@ -79,19 +79,20 @@
   color: #333;
 }
 
-.action-buttons .btn {
+.action-buttons1 .btn {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   border-radius: 8px;
   transition: all 0.3s ease;
+  width: 28%;
 }
 
-.action-buttons .btn-outline-danger:hover {
+.action-buttons1 .btn-outline-danger:hover {
   background-color: #dc3545;
   color: #fff;
 }
 
-.action-buttons .btn-success {
+.action-buttons1 .btn-success {
   background-color: #28a745;
   border-color: #28a745;
 }
@@ -261,18 +262,26 @@
     text-align: left;
   }
 
-  .action-buttons .btn {
+  .action-buttons1 .btn {
     padding: 0.35rem 0.75rem;
     font-size: 0.75rem;
     border-radius: 6px;
   }
 
-  .action-buttons .btn-outline-danger {
+  .action-buttons1 .btn-outline-danger {
     border-width: 1px;
   }
 
-  .action-buttons .btn-success {
+  .action-buttons1 .btn-success {
     padding: 0.35rem 0.9rem;
+  }
+  td.action-buttons1.align-middle {
+    margin-left: -200px;
+    text-align: center;
+  }
+
+  button.me-2.btn.btn-outline-primary.btn-sm {
+    text-align: center;
   }
 
   .clear-cart-btn {

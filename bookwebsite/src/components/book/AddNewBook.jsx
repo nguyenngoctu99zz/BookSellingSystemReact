@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../../utils/auth";
 import { requestToAddNewBook } from "../../service/bookAPI";
+import { getAllCategories } from "../../service/categoryAPI";
 
 function AddNewBook() {
   const [formData, setFormData] = useState({
@@ -13,10 +14,26 @@ function AddNewBook() {
     bookImage: null,
     description: "",
     publishDate: "",
+    categoryIds: [],
   });
+  const [categories, setCategories] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await getAllCategories();
+        const categoriesData = response.data?.data || response.data || [];
+        setCategories(categoriesData);
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setCategories([]);
+      }
+    };
+    fetchCategories();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -31,6 +48,23 @@ function AddNewBook() {
       ...prev,
       bookImage: e.target.files[0],
     }));
+  };
+
+  const handleCategoryChange = (e) => {
+    const { value, checked } = e.target;
+    setFormData((prev) => {
+      if (checked) {
+        return {
+          ...prev,
+          categoryIds: [...prev.categoryIds, parseInt(value)],
+        };
+      } else {
+        return {
+          ...prev,
+          categoryIds: prev.categoryIds.filter((id) => id !== parseInt(value)),
+        };
+      }
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -53,6 +87,11 @@ function AddNewBook() {
       formDataToSend.append("price", formData.price);
       formDataToSend.append("description", formData.description);
       formDataToSend.append("publishDate", formData.publishDate);
+
+      formData.categoryIds.forEach((id) => {
+        formDataToSend.append("categoryIds", id);
+      });
+
       if (formData.bookImage) {
         formDataToSend.append("bookImage", formData.bookImage);
       }
@@ -71,6 +110,7 @@ function AddNewBook() {
         bookImage: null,
         description: "",
         publishDate: "",
+        categoryIds: [],
       });
 
       setTimeout(() => navigate("/"), 2000);
@@ -88,7 +128,7 @@ function AddNewBook() {
               className="card-body p-4"
               style={{
                 borderColor: "black",
-                backgroundColor: "#F2F0EA",
+                // backgroundColor: "#F2F0EA",
               }}
             >
               {error && (
@@ -232,21 +272,85 @@ function AddNewBook() {
                     className="form-control"
                   />
                 </div>
+
+                {/* <div className="mb-3">
+                  <label className="form-label">Categories</label>
+                  <div className="d-flex flex-wrap gap-3">
+                    {categories.map((category) => (
+                      <div key={category.categoryId} className="form-check">
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          id={`category-${category.categoryId}`}
+                          value={category.categoryId}
+                          checked={formData.categoryIds.includes(
+                            category.categoryId
+                          )}
+                          onChange={handleCategoryChange}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`category-${category.categoryId}`}
+                        >
+                          {category.categoryName}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div> */}
+                <div className="mb-3">
+                  <label htmlFor="categories" className="form-label">
+                    Categories
+                  </label>
+                  <select
+                    multiple
+                    id="categories"
+                    name="categories"
+                    value={formData.categoryIds.map(String)} // Chuyển số thành chuỗi để so khớp với value
+                    onChange={(e) => {
+                      const options = e.target.options;
+                      const selectedValues = [];
+                      for (let i = 0; i < options.length; i++) {
+                        if (options[i].selected) {
+                          selectedValues.push(parseInt(options[i].value));
+                        }
+                      }
+                      setFormData((prev) => ({
+                        ...prev,
+                        categoryIds: selectedValues,
+                      }));
+                    }}
+                    className="form-select"
+                    style={{ height: "auto" }}
+                    required
+                  >
+                    {categories.map((category) => (
+                      <option
+                        key={category.categoryId}
+                        value={category.categoryId}
+                      >
+                        {category.categoryName}
+                      </option>
+                    ))}
+                  </select>
+                  <small className="text-muted">
+                    Hold Ctrl (Windows) or Command (Mac) to select multiple
+                    categories
+                  </small>
+                </div>
+
                 <div className="mb-4">
                   <button
+                    style={{
+                      backgroundColor: "#007bff",
+                      color: "white",
+                    }}
                     type="submit"
-                    className="btn btn-primary w-100 btn-custom"
+                    className="btn btn-primary1 w-100 btn-custom1"
                   >
                     Add Book
                   </button>
                 </div>
-
-                {/* <button
-                  type="submit"
-                  className="btn btn-primary w-100 btn-custom"
-                >
-                  Add Book
-                </button> */}
               </form>
             </div>
           </div>

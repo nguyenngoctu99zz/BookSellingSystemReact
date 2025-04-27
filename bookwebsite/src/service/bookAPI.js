@@ -110,7 +110,25 @@ export const newestBooks = (pageNumber, numberOfBookEachPage) => {
       console.log(err);
     });
 };
+const API_URL = "http://localhost:8080/api/v1";
 
+export const filterBooksByCategories = async (categoryIds) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/book/filter-by-categories`,
+      categoryIds,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error filtering books by categories:", error);
+    throw error;
+  }
+};
 const BASE_URL = "http://localhost:8080/api/v1/admin/books";
 
 export const getAllPendingBooks = async (token) => {

@@ -220,11 +220,11 @@ const MyOrder = () => {
             </div>
           </div>
 
-          <div className="d-flex justify-content-start mt-4">
+          {/* <div className="d-flex justify-content-start mt-4">
             <a href="/" className="btn btn-outline-secondary">
               Continue Shopping
             </a>
-          </div>
+          </div> */}
         </>
       )}
     </div>

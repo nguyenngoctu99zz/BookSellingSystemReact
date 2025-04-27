@@ -64,12 +64,13 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import '../../assets/styles/Listing.css';
 import { bookByReview, bookByDiscount, newestBooks } from '../../service/bookAPI';
 import { HandlePagination } from './Pagination';
-
+import { useNavigate } from 'react-router-dom';
 export const BookListing = (props) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [books, setBooks] = useState([]);
   const [numberOfPage, setNumberOfPage] = useState(1);
   const page = props.page;
+  const navigate = useNavigate();
 
   // Map page types to titles
   const pageTitles = {
@@ -141,7 +142,9 @@ export const BookListing = (props) => {
                       <span className="original-price text-decoration-line-through">${book.originalPrice?.toFixed(2)}</span>
                     )}
                   </div>
-                  <Button variant="primary" className="w-100 btn-details">View Details</Button>
+                  <Button variant="primary" className="w-100 btn-details" onClick={()=>{
+                        navigate(`/book-detail/${book.bookId}`)
+                  }}>View Details</Button>
                 </div>
               </Card.Body>
             </Card>

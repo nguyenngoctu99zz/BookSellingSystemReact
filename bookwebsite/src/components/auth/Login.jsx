@@ -10,22 +10,28 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     try {
       const res = await postLogin(username, password);
       console.log("API Response:", res);
+  
       if (res.data.code === 0 && res.data.data.token) {
         localStorage.setItem('token', res.data.data.token);
         localStorage.setItem('userId', res.data.data.userId);
         navigate("/");
       } else {
-        alert("Invalid username or password");
+        alert(res.data.message || "Invalid username or password");
       }
     } catch (error) {
       console.error("Login error:", error);
-      alert("An error occurred. Please try again.");
+      if (error.response && error.response.data) {
+        alert(error.response.data.message);
+      } else {
+        alert("An unexpected error occurred. Please try again.");
+      }
     }
   };
+  
 
   return (
     <Container

@@ -3,7 +3,7 @@ import {
   Container, Row, Col, Nav, Card, Form, Table, Button, Modal, Badge, Spinner, Alert, Navbar, Offcanvas, Dropdown
 } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FiGrid, FiUsers, FiBook, FiShoppingCart, FiMenu } from 'react-icons/fi';
+import { FiGrid, FiUsers, FiBook, FiShoppingCart, FiMenu, FiCheckCircle } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getToken } from '../../../utils/auth';
 import { getAllUsers, deleteUser, toggleUserStatus, updateUser } from '../../../service/userApi';
@@ -281,7 +281,7 @@ const ManageUser = () => {
                 { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
                 { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
                 { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
-                { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
+                { name: 'Approve Book', path: '/admin/approve-book', icon: <FiCheckCircle /> },
               ].map((item, index) => (
                 <div
                   key={index}

@@ -1,18 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
-  Container, Row, Col, Nav, Card, Form,
-  Table, Button, Spinner, Alert, Navbar, Offcanvas, Dropdown
-} from 'react-bootstrap';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { FiGrid, FiUsers, FiBook, FiShoppingCart, FiEdit, FiTrash2, FiMenu } from 'react-icons/fi';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { getToken } from '../../../utils/auth';
-import { deleteBook, getBooks } from '../../../service/bookAPI';
-
+  Container,
+  Row,
+  Col,
+  Nav,
+  Card,
+  Form,
+  Table,
+  Button,
+  Spinner,
+  Alert,
+  Navbar,
+  Offcanvas,
+  Dropdown,
+} from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
+import {
+  FiGrid,
+  FiUsers,
+  FiBook,
+  FiShoppingCart,
+  FiEdit,
+  FiTrash2,
+  FiMenu,
+  FiCheckCircle,
+} from "react-icons/fi";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { getToken } from "../../../utils/auth";
+import { deleteBook, getBooks } from "../../../service/bookAPI";
+import { searchBook } from "../../../service/searchBook";
 const ManageBook = () => {
   const [books, setBooks] = useState([]);
-  const [searchTitle, setSearchTitle] = useState('');
-  const [searchAuthor, setSearchAuthor] = useState('');
+  const [searchTitle, setSearchTitle] = useState("");
+  const [searchAuthor, setSearchAuthor] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,7 +41,7 @@ const ManageBook = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const [activeSection, setActiveSection] = useState('Manage Book');
+  const [activeSection, setActiveSection] = useState("Manage Book");
   const token = getToken();
 
   const fetchBooks = async () => {
@@ -33,25 +53,51 @@ const ManageBook = () => {
       const bookList = Array.isArray(data) ? data : [];
       setBooks(bookList);
     } catch (err) {
-      setError(err.message || 'Failed to fetch books. Please try again.');
+      setError(err.message || "Failed to fetch books. Please try again.");
+      setBooks([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleSearch = async () => {
+    if (!searchTitle.trim()) {
+      fetchBooks();
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await searchBook(searchTitle);
+      const data = response?.data?.books || [];
+      const bookList = Array.isArray(data) ? data : [];
+      setBooks(bookList);
+      setCurrentPage(1);
+    } catch (err) {
+      setError(err.message || "Failed to search books. Please try again.");
       setBooks([]);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleReset = () => {
+    setSearchTitle("");
+    setSearchAuthor("");
+    fetchBooks();
+  };
   useEffect(() => {
     fetchBooks();
   }, []);
 
   useEffect(() => {
     const path = location.pathname;
-    if (path.includes('manage-user')) {
-      setActiveSection('Manage User');
-    } else if (path.includes('manage-book')) {
-      setActiveSection('Manage Book');
-    } else if (path.includes('approve-requests')) {
-      setActiveSection('Approve Requests');
+    if (path.includes("manage-user")) {
+      setActiveSection("Manage User");
+    } else if (path.includes("manage-book")) {
+      setActiveSection("Manage Book");
+    } else if (path.includes("approve-requests")) {
+      setActiveSection("Approve Requests");
     }
   }, [location.pathname]);
 
@@ -66,34 +112,30 @@ const ManageBook = () => {
     setShowSidebar(false);
   };
 
-  const handleEditBook = (book) => {
-    console.log('Edit book:', book);
-  };
-
   const handleDeleteBook = async (bookId) => {
-    if (!window.confirm('Are you sure you want to delete this book?')) return;
+    if (!window.confirm("Are you sure you want to delete this book?")) return;
 
     try {
       await deleteBook(bookId, token);
       await fetchBooks();
-      alert('Book deleted successfully');
+      alert("Book deleted successfully");
     } catch (err) {
-      setError(err.message || 'Failed to delete book. Please try again.');
-      console.error('Delete book error:', err);
+      setError(err.message || "Failed to delete book. Please try again.");
+      console.error("Delete book error:", err);
     }
   };
 
   const handleDropdownSelect = (action) => {
-    if (action === 'home') {
-      navigate('/');
-    } else if (action === 'logout') {
+    if (action === "home") {
+      navigate("/");
+    } else if (action === "logout") {
       localStorage.removeItem("token");
-      navigate('/login');
+      navigate("/login");
     }
   };
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f1f5f9' }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#f1f5f9" }}>
       <style>
         {`
           @media (max-width: 768px) {
@@ -119,18 +161,32 @@ const ManageBook = () => {
       {/* Mobile Navbar */}
       <Navbar bg="white" className="shadow-sm d-md-none">
         <Container fluid>
-          <Navbar.Brand className="fw-bold text-dark fs-5">Admin Dashboard</Navbar.Brand>
+          <Navbar.Brand className="fw-bold text-dark fs-5">
+            Admin Dashboard
+          </Navbar.Brand>
           <div className="d-flex align-items-center">
             <Dropdown align="end">
-              <Dropdown.Toggle as="div" style={{ cursor: 'pointer' }} className="d-flex align-items-center">
+              <Dropdown.Toggle
+                as="div"
+                style={{ cursor: "pointer" }}
+                className="d-flex align-items-center"
+              >
                 <span className="fw-semibold text-dark">Hello Admin</span>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => handleDropdownSelect('home')}>Home</Dropdown.Item>
-                <Dropdown.Item onClick={() => handleDropdownSelect('logout')}>Logout</Dropdown.Item>
+                <Dropdown.Item onClick={() => handleDropdownSelect("home")}>
+                  Home
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleDropdownSelect("logout")}>
+                  Logout
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Button variant="link" onClick={() => setShowSidebar(true)} className="ms-2">
+            <Button
+              variant="link"
+              onClick={() => setShowSidebar(true)}
+              className="ms-2"
+            >
               <FiMenu size={20} className="text-dark" />
             </Button>
           </div>
@@ -142,7 +198,7 @@ const ManageBook = () => {
         show={showSidebar}
         onHide={() => setShowSidebar(false)}
         className="d-md-none"
-        style={{ width: '250px' }}
+        style={{ width: "250px" }}
       >
         <Offcanvas.Header closeButton>
           <div className="d-flex align-items-center">
@@ -152,18 +208,32 @@ const ManageBook = () => {
         <Offcanvas.Body className="bg-white p-4">
           <Nav className="flex-column">
             {[
-              { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
-              { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
-              { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
-             { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
+              { name: "Dashboard", path: "/admin/dashboard", icon: <FiGrid /> },
+              {
+                name: "Manage User",
+                path: "/admin/manage-user",
+                icon: <FiUsers />,
+              },
+              {
+                name: "Manage Book",
+                path: "/admin/manage-book",
+                icon: <FiBook />,
+              },
+              {
+                name: "Approve Book",
+                path: "/admin/approve-book",
+                icon: <FiBook />,
+              },
             ].map((item, index) => (
               <div
                 key={index}
                 onClick={() => handleNavigation(item.name, item.path)}
                 className={`d-flex align-items-center p-2 rounded cursor-pointer ${
-                  activeSection === item.name ? 'bg-primary text-white' : 'text-muted'
+                  activeSection === item.name
+                    ? "bg-primary text-white"
+                    : "text-muted"
                 }`}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div className="me-2 fs-5">{item.icon}</div>
                 {item.name}
@@ -176,24 +246,47 @@ const ManageBook = () => {
       <Container fluid>
         <Row>
           {/* Sidebar for Desktop */}
-          <Col md={3} lg={2} className="bg-white p-4 shadow-sm d-none d-md-block" style={{ height: '100vh' }}>
+          <Col
+            md={3}
+            lg={2}
+            className="bg-white p-4 shadow-sm d-none d-md-block"
+            style={{ height: "100vh" }}
+          >
             <div className="d-flex align-items-center mb-4">
               <span className="fw-bold text-dark fs-5">Admin Dashboard</span>
             </div>
             <Nav className="flex-column">
               {[
-                { name: 'Dashboard', path: '/admin/dashboard', icon: <FiGrid /> },
-                { name: 'Manage User', path: '/admin/manage-user', icon: <FiUsers /> },
-                { name: 'Manage Book', path: '/admin/manage-book', icon: <FiBook /> },
-                { name: 'Approve Book', path: '/admin/approve-book', icon: <FiBook /> },
+                {
+                  name: "Dashboard",
+                  path: "/admin/dashboard",
+                  icon: <FiGrid />,
+                },
+                {
+                  name: "Manage User",
+                  path: "/admin/manage-user",
+                  icon: <FiUsers />,
+                },
+                {
+                  name: "Manage Book",
+                  path: "/admin/manage-book",
+                  icon: <FiBook />,
+                },
+                {
+                  name: "Approve Book",
+                  path: "/admin/approve-book",
+                  icon: <FiCheckCircle />,
+                },
               ].map((item, index) => (
                 <div
                   key={index}
                   onClick={() => handleNavigation(item.name, item.path)}
                   className={`d-flex align-items-center p-2 rounded cursor-pointer ${
-                    activeSection === item.name ? 'bg-primary text-white' : 'text-muted'
+                    activeSection === item.name
+                      ? "bg-primary text-white"
+                      : "text-muted"
                   }`}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: "pointer" }}
                 >
                   <div className="me-2 fs-5">{item.icon}</div>
                   {item.name}
@@ -205,22 +298,40 @@ const ManageBook = () => {
           {/* Main Content */}
           <Col md={9} lg={10} className="p-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
-              <h1 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#1f2937' }}>
+              <h1
+                style={{
+                  fontSize: "1.5rem",
+                  fontWeight: "bold",
+                  color: "#1f2937",
+                }}
+              >
                 Manage Book
               </h1>
               <Dropdown align="end">
-                <Dropdown.Toggle as="div" style={{ cursor: 'pointer' }} className="d-flex align-items-center">
+                <Dropdown.Toggle
+                  as="div"
+                  style={{ cursor: "pointer" }}
+                  className="d-flex align-items-center"
+                >
                   <span className="fw-semibold text-dark">Hello Admin</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item onClick={() => handleDropdownSelect('home')}>Home</Dropdown.Item>
-                  <Dropdown.Item onClick={() => handleDropdownSelect('logout')}>Logout</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleDropdownSelect("home")}>
+                    Home
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => handleDropdownSelect("logout")}>
+                    Logout
+                  </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
 
             {error && (
-              <Alert variant="danger" dismissible onClose={() => setError(null)}>
+              <Alert
+                variant="danger"
+                dismissible
+                onClose={() => setError(null)}
+              >
                 {error}
               </Alert>
             )}
@@ -246,10 +357,14 @@ const ManageBook = () => {
                       />
                     </Col>
                     <Col md={2} className="d-flex justify-content-md-end">
-                      <Button variant="secondary" className="me-2">
+                      <Button
+                        variant="secondary"
+                        className="me-2"
+                        onClick={handleReset}
+                      >
                         Reset
                       </Button>
-                      <Button variant="primary">
+                      <Button variant="primary" onClick={handleSearch}>
                         Query
                       </Button>
                     </Col>
@@ -261,7 +376,7 @@ const ManageBook = () => {
             <Card className="shadow-sm">
               <Card.Body>
                 <Card.Title className="mb-4">Book List</Card.Title>
-                <div style={{ overflowX: 'auto' }}>
+                <div style={{ overflowX: "auto" }}>
                   {loading ? (
                     <div className="text-center my-4">
                       <Spinner animation="border" variant="primary" />
@@ -281,7 +396,7 @@ const ManageBook = () => {
                       </thead>
                       <tbody>
                         {currentBooks.length > 0 ? (
-                          currentBooks.map(book => (
+                          currentBooks.map((book) => (
                             <tr key={book.bookId}>
                               <td>{book.bookId}</td>
                               <td>{book.bookTitle}</td>
@@ -317,19 +432,23 @@ const ManageBook = () => {
                   <Button
                     variant="link"
                     className="text-primary p-0 me-2 pagination-btn"
-                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.max(prev - 1, 1))
+                    }
                     disabled={currentPage === 1}
                   >
-                    {'<'}
+                    {"<"}
                   </Button>
                   <span className="me-2">{currentPage}</span>
                   <Button
                     variant="link"
                     className="text-primary p-0 me-2 pagination-btn"
-                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    onClick={() =>
+                      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                    }
                     disabled={currentPage === totalPages}
                   >
-                    {'>'}
+                    {">"}
                   </Button>
                 </div>
               </Card.Body>
