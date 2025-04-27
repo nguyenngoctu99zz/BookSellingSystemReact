@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Container, Card, Form, Button } from "react-bootstrap";
 import { postLogin } from "../../service/securityAPI";
 
-
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -14,10 +13,10 @@ const Login = () => {
     try {
       const res = await postLogin(username, password);
       console.log("API Response:", res);
-  
+
       if (res.data.code === 0 && res.data.data.accessToken) {
-        localStorage.setItem('token', res.data.data.accessToken);
-        localStorage.setItem('userId', res.data.data.userId);
+        localStorage.setItem("token", res.data.data.accessToken);
+        localStorage.setItem("userId", res.data.data.userId);
         navigate("/");
       } else {
         alert(res.data.message || "Invalid username or password");
@@ -31,14 +30,18 @@ const Login = () => {
       }
     }
   };
-  
 
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
-      <Card className="p-4 shadow-sm" style={{ width: "400px" }}>
+      <Card
+        className="p-4 shadow-sm"
+        style={{
+          width: "400px",
+        }}
+      >
         <h3 className="text-center mb-3 fw-bold">Login</h3>
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3">
@@ -63,7 +66,12 @@ const Login = () => {
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit" className="w-100">
+          <Button
+            variant="primary1"
+            type="submit"
+            className="w-100"
+            style={{ backgroundColor: "#007bff", color: "white" }}
+          >
             Login
           </Button>
         </Form>
