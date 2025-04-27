@@ -41,7 +41,10 @@ function Home() {
   const fetchCategories = async () => {
     try {
       const categoryResponse = await getAllCategories();
-      if (categoryResponse.code === 200 && Array.isArray(categoryResponse.data)) {
+      if (
+        categoryResponse.code === 200 &&
+        Array.isArray(categoryResponse.data)
+      ) {
         setCategories(categoryResponse.data);
       }
     } catch (error) {
@@ -65,10 +68,11 @@ function Home() {
 
       if (bookResponse?.data?.code === 200 || bookResponse?.data?.bookList) {
         const booksData = bookResponse.data.data || bookResponse.data.bookList;
-
+        const activeBooks = booksData.filter((book) => book.active === true);
         const booksWithRating = await Promise.all(
-          booksData.map(async (book) => {
-            if (!book.bookId) return { ...book, averageRating: 0, reviewCount: 0 };
+          activeBooks.map(async (book) => {
+            if (!book.bookId)
+              return { ...book, averageRating: 0, reviewCount: 0 };
             const ratingResponse = await getBookReviews(book.bookId);
             return {
               ...book,
@@ -94,7 +98,9 @@ function Home() {
     if (checked) {
       updatedSelectedCategories = [...selectedCategories, parseInt(value)];
     } else {
-      updatedSelectedCategories = selectedCategories.filter((catId) => catId !== parseInt(value));
+      updatedSelectedCategories = selectedCategories.filter(
+        (catId) => catId !== parseInt(value)
+      );
     }
 
     setSelectedCategories(updatedSelectedCategories);
@@ -102,13 +108,16 @@ function Home() {
     if (updatedSelectedCategories.length > 0) {
       setLoading(true);
       try {
-        const response = await filterBooksByCategories(updatedSelectedCategories);
+        const response = await filterBooksByCategories(
+          updatedSelectedCategories
+        );
         if (response?.data) {
           const booksData = response.data;
-
+          const activeBooks = booksData.filter((book) => book.active === true);
           const booksWithRating = await Promise.all(
-            booksData.map(async (book) => {
-              if (!book.bookId) return { ...book, averageRating: 0, reviewCount: 0 };
+            activeBooks.map(async (book) => {
+              if (!book.bookId)
+                return { ...book, averageRating: 0, reviewCount: 0 };
               const ratingResponse = await getBookReviews(book.bookId);
               return {
                 ...book,
@@ -133,7 +142,7 @@ function Home() {
 
   const handleTabSelect = (k) => {
     setCurrentPage(1);
-    setSelectedCategories([]); // reset selected categories
+    setSelectedCategories([]);
     setActiveTab(k);
   };
 
@@ -145,23 +154,29 @@ function Home() {
 
   if (loading) {
     return (
-      <Container className="d-flex justify-content-center align-items-center" style={{ height: "80vh" }}>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "80vh" }}
+      >
         <Spinner animation="border" variant="primary" />
       </Container>
     );
   }
 
   return (
-    <Container className="my-5">
+    <Container className="my-5" style={{ maxWidth: "93%" }}>
       <Row className="gx-5 gy-4" style={{ minHeight: "80vh" }}>
         {/* Sidebar */}
         <Col xs={12} md={4} lg={3}>
-          <div className="p-4 border rounded bg-white sticky-top" style={{
-            top: "90px",
-            maxHeight: "calc(100vh - 150px)",
-            overflowY: "auto"
-          }}>
-            <h5 className="mb-4">Bộ lọc tìm kiếm</h5>
+          <div
+            className="p-4 border rounded bg-white sticky-top"
+            style={{
+              top: "90px",
+              maxHeight: "calc(100vh - 150px)",
+              overflowY: "auto",
+            }}
+          >
+            <h5 className="mb-4">Search Filters</h5>
             <Form>
               {categories.length > 0 ? (
                 categories.map((cat, idx) => (
@@ -176,7 +191,7 @@ function Home() {
                   />
                 ))
               ) : (
-                <p>Đang tải danh mục...</p>
+                <p>Loading...</p>
               )}
             </Form>
           </div>
@@ -184,11 +199,24 @@ function Home() {
 
         {/* Nội dung sách */}
         <Col xs={12} md={8} lg={9}>
-          <Tabs activeKey={activeTab} onSelect={handleTabSelect} id="book-tabs" className="mb-4">
-            <Tab eventKey="all" title="All">{renderBooks()}</Tab>
-            <Tab eventKey="best-discount" title="Best Discount">{renderBooks()}</Tab>
-            <Tab eventKey="best-review" title="Top Rated">{renderBooks()}</Tab>
-            <Tab eventKey="newest" title="Newest">{renderBooks()}</Tab>
+          <Tabs
+            activeKey={activeTab}
+            onSelect={handleTabSelect}
+            id="book-tabs"
+            className="mb-4"
+          >
+            <Tab eventKey="all" title="All">
+              {renderBooks()}
+            </Tab>
+            <Tab eventKey="best-discount" title="Best Discount">
+              {renderBooks()}
+            </Tab>
+            <Tab eventKey="best-review" title="Top Rated">
+              {renderBooks()}
+            </Tab>
+            <Tab eventKey="newest" title="Newest">
+              {renderBooks()}
+            </Tab>
           </Tabs>
         </Col>
       </Row>
@@ -196,7 +224,10 @@ function Home() {
   );
 
   function renderBooks() {
-    const currentBooks = books.slice((currentPage - 1) * booksPerPage, currentPage * booksPerPage);
+    const currentBooks = books.slice(
+      (currentPage - 1) * booksPerPage,
+      currentPage * booksPerPage
+    );
     return (
       <>
         {currentBooks.length > 0 ? (
@@ -206,66 +237,91 @@ function Home() {
                 <Card
                   className="h-100 w-100 position-relative"
                   onClick={() => navigate(`/book-detail/${book.bookId}`)}
-                  style={{ cursor: "pointer" }}
+                  style={{ cursor: "pointer", minHeight: "320px" }}
                 >
-                  {activeTab === "best-discount" && book.discountPercentage && (
-                    <div style={{
-                      position: "absolute",
-                      top: "8px",
-                      right: "8px",
-                      background: "red",
-                      color: "white",
-                      padding: "4px 8px",
-                      fontSize: "0.65rem",
-                      fontWeight: "bold",
-                      borderRadius: "8px",
-                    }}>
-                      -{book.discountPercentage}%
-                    </div>
-                  )}
+                  {activeTab === "best-discount" &&
+                    book.discountPercentage > 0 && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "8px",
+                          right: "8px",
+                          background: "red",
+                          color: "white",
+                          fontSize: "0.65rem",
+                          fontWeight: "bold",
+                          borderRadius: "8px",
+                          padding: "2px 5px",
+                        }}
+                      >
+                        -{book.discountPercentage}%
+                      </div>
+                    )}
+
                   {book.bookImage && (
                     <Card.Img
                       variant="top"
-                      src={`http://localhost:8080/api/v1/image/show?imageName=${book.bookImage}`}
+                      src={
+                        book.bookImage.startsWith("http")
+                          ? book.bookImage
+                          : `http://localhost:8080/api/v1/image/show?imageName=${book.bookImage}`
+                      }
                       alt={book.bookTitle}
                       style={{ height: "220px", objectFit: "cover" }}
                     />
                   )}
-                  <Card.Body style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    height: "100%",
-                    padding: "0.75rem"
-                  }}>
+
+                  <Card.Body
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      padding: "0.75rem",
+                      flexGrow: 1,
+                    }}
+                  >
                     <div style={{ marginBottom: "auto" }}>
-                      <Card.Title style={{
-                        fontSize: "0.9rem",
-                        minHeight: "40px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}>
+                      <Card.Title
+                        style={{
+                          fontSize: "0.9rem",
+                          minHeight: "40px",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
                         {book.bookTitle}
                       </Card.Title>
-                    </div>
-                    <div>
-                      <div className="text-muted" style={{
-                        fontSize: "0.8rem",
-                        minHeight: "20px",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        marginBottom: "2px",
-                      }}>
+                      <div
+                        className="text-muted"
+                        style={{
+                          fontSize: "0.8rem",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                          marginBottom: "4px",
+                        }}
+                      >
                         {book.author}
                       </div>
-                      <div className="mb-2 d-flex align-items-center gap-1">
+                      <div className="d-flex align-items-center gap-1 mb-2">
                         {[...Array(5)].map((_, i) => (
-                          <FaStar key={i} size={12} color={i < Math.round(book.averageRating || 0) ? "gold" : "#e4e5e9"} />
+                          <FaStar
+                            key={i}
+                            size={12}
+                            color={
+                              i < Math.round(book.averageRating || 0)
+                                ? "gold"
+                                : "#e4e5e9"
+                            }
+                          />
                         ))}
-                        <small className="text-muted">({book.reviewCount || 0})</small>
+                        <small className="text-muted">
+                          ({book.reviewCount || 0})
+                        </small>
                       </div>
+                    </div>
+                    <div>
                       <strong style={{ fontSize: "1rem" }}>
                         {book.price?.toLocaleString()} $
                       </strong>
@@ -282,7 +338,10 @@ function Home() {
         )}
         {totalPages > 1 && (
           <div className="d-flex justify-content-center mt-5">
-            <HandlePagination numberOfPage={totalPages} setPageNumber={handlePageChange} />
+            <HandlePagination
+              numberOfPage={totalPages}
+              setPageNumber={handlePageChange}
+            />
           </div>
         )}
       </>

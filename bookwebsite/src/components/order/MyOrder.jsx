@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import coverIcon from "../../assets/staticImage/cover-page.jpg";
 import { showMyOrder, cancelOrder, rejectOrder } from "../../service/orderAPI";
 import { useNavigate } from "react-router-dom";
+import { getToken } from "../../utils/auth";
 
 const MyOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -10,7 +11,7 @@ const MyOrder = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (!token) {
       navigate("/login");
       return;
@@ -36,7 +37,7 @@ const MyOrder = () => {
 
   const handleCancelOrder = async (orderItemId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const response = await cancelOrder(token, orderItemId);
       if (response.data.code === 0) {
         setOrders(

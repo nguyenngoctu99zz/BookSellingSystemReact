@@ -15,8 +15,8 @@ const Login = () => {
       const res = await postLogin(username, password);
       console.log("API Response:", res);
   
-      if (res.data.code === 0 && res.data.data.token) {
-        localStorage.setItem('token', res.data.data.token);
+      if (res.data.code === 0 && res.data.data.accessToken) {
+        localStorage.setItem('token', res.data.data.accessToken);
         localStorage.setItem('userId', res.data.data.userId);
         navigate("/");
       } else {
@@ -67,14 +67,6 @@ const Login = () => {
             Login
           </Button>
         </Form>
-        <Button
-          variant="danger"
-          className="w-100 mt-2"
-          href="http://localhost:8080/oauth2/authorization/google"
-        >
-          Login with Google
-        </Button>
-
         <div className="text-center mt-3">
           <p>
             Do you have an account yet? <a href="/register">Sign Up</a>

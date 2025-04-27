@@ -116,12 +116,7 @@ export const filterBooksByCategories = async (categoryIds) => {
   try {
     const response = await axios.post(
       `${API_URL}/book/filter-by-categories`,
-      categoryIds,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      categoryIds
     );
     return response.data;
   } catch (error) {

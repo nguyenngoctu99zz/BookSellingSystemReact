@@ -83,7 +83,7 @@ const Signup = () => {
             <Form.Control
               type="text"
               name="fullName"
-              placeholder="Nhập họ tên"
+              placeholder="Enter a name"
               value={formData.fullName}
               onChange={handleChange}
               required
@@ -95,7 +95,7 @@ const Signup = () => {
             <Form.Control
               type="text"
               name="username"
-              placeholder="Tên đăng nhập"
+              placeholder="Enter an username"
               value={formData.username}
               onChange={handleChange}
               required
@@ -119,7 +119,7 @@ const Signup = () => {
             <Form.Control
               type="text"
               name="phoneNumber"
-              placeholder="Số điện thoại"
+              placeholder="Phone number"
               value={formData.phoneNumber}
               onChange={handleChange}
               required
@@ -131,7 +131,7 @@ const Signup = () => {
             <Form.Control
               type="password"
               name="password"
-              placeholder="Mật khẩu"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               required
@@ -143,7 +143,7 @@ const Signup = () => {
             <Form.Control
               type="password"
               name="confirmPassword"
-              placeholder="Xác nhận mật khẩu"
+              placeholder="Confirm password"
               value={formData.confirmPassword}
               onChange={handleChange}
               required

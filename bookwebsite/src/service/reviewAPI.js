@@ -10,10 +10,7 @@ const authHeader = () => ({
 });
 
 export const getBookReviews = async (bookId) => {
-  const res = await axios.get(
-    `${API_BASE}/reviews/book/${bookId}`,
-    authHeader()
-  );
+  const res = await axios.get(`${API_BASE}/reviews/book/${bookId}`);
   return res.data.data;
 };
 
@@ -42,7 +39,6 @@ export const deleteReview = async (reviewId) => {
 
 export const updateReview = async (reviewId, updatedReview) => {
   try {
-    // Send the updated review as the body of the PUT request
     const response = await axios.put(
       `http://localhost:8080/api/v1/reviews/book/${reviewId}`,
       updatedReview

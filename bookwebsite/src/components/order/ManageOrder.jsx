@@ -6,6 +6,7 @@ import {
   acceptOrder,
   rejectOrder,
 } from "../../service/orderAPI";
+import { getToken } from "../../utils/auth";
 
 const ManageOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -15,7 +16,7 @@ const ManageOrder = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getToken()
     if (!token) {
       navigate("/login");
       return;
@@ -41,7 +42,7 @@ const ManageOrder = () => {
 
   const handleAcceptOrder = async (orderItemId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       setLoading(true);
       const response = await acceptOrder(token, orderItemId);
 
@@ -61,7 +62,7 @@ const ManageOrder = () => {
 
   const handleRejectOrder = async (orderItemId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       setLoading(true);
       const response = await rejectOrder(token, orderItemId);
 

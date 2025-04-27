@@ -19,7 +19,7 @@ import {
   FiMenu,
 } from "react-icons/fi";
 import { getToken } from "../../../utils/auth";
-import { getAllUsers } from "../../../service/userApi";
+import { getAllUsers } from "../../../service/userAPI";
 import { getAllPendingBooks, getBooks } from "../../../service/bookAPI";
 
 const Dashboard = () => {

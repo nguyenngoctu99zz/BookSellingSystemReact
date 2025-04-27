@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Card, Row, Col, ProgressBar, Button, Form, Alert, Modal } from 'react-bootstrap';
 import { FaStar, FaUserCircle } from 'react-icons/fa';
 import { getBookReviews, postReview, deleteReview, updateReview } from '../../service/reviewAPI';
@@ -21,9 +21,9 @@ const BookReview = () => {
 
   const currentUserId = parseInt(localStorage.getItem('userId'));
 
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 4;
+  const navigate = useNavigate()
 
   useEffect(() => {
     const loadReviews = async () => {
@@ -66,7 +66,9 @@ const BookReview = () => {
       setRating(0);
       setFormError(null);
     } catch (err) {
-      setFormError(err.response?.data?.message || 'Failed to submit review');
+      setFormError(err.response?.data?.message);
+      navigate('/login')
+      alert('Please login to review')
     } finally {
       setIsSubmitting(false);
     }
@@ -97,7 +99,7 @@ const BookReview = () => {
       setReviews(updatedData.reviews);
       setAverageRating(updatedData.averageRating);
       setRatingDistribution(calculateDistribution(updatedData.reviews));
-      setShowEditModal(false); // Close the modal after update
+      setShowEditModal(false); 
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to update review');
     }

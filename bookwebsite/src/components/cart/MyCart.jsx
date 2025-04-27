@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Popup from "../Popup";
 import PaymentForm from "../Payment/PaymentFormComponent";
+import { getToken } from "../../utils/auth";
 
 const MyCart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -22,7 +23,7 @@ const MyCart = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = getToken();
     if (!token) {
       navigate("/login");
       return;
@@ -48,7 +49,7 @@ const MyCart = () => {
 
   const handleRemoveItem = async (cartItemId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const response = await removeItemFormCart(cartItemId, token);
       if (response.data.code === 0) {
         setCartItems(
@@ -64,7 +65,7 @@ const MyCart = () => {
 
   const handleClearCart = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const response = await clearCartItem(token);
       if (response.data.code === 0) {
         setCartItems([]);
@@ -108,7 +109,7 @@ const MyCart = () => {
 
   const saveEdit = async (cartItemId) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = getToken();
       const response = await editCartItem(cartItemId, token, editQuantity);
       if (response.data.code === 0) {
         setCartItems(
